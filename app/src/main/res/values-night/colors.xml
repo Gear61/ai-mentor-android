@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_core_color">#252525</color>
+    <color name="status_bar_color">#101010</color>
+    <color name="accent_color">@color/purple</color>
+    <color name="black_50_alpha">#80000000</color>
+    <color name="navigation_bar_color">#252525</color>
+
+    <color name="skeleton_start">#9E9E9E</color>
+    <color name="skeleton_end">#696969</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_50_alpha">#80FFFFFF</color>
+    <color name="white_80_alpha">#CCFFFFFF</color>
+    <color name="line_divider_color">#E0E0E0</color>
+    <color name="dialog_background">#424242</color>
+
+    <color name="text_normal">@color/white_80_alpha</color>
+    <color name="text_title">@color/white</color>
+    <color name="text_footer">@color/white_50_alpha</color>
+
+    <color name="purple">#9B31A0</color>
+    <color name="red">#F44336</color>
+    <color name="green">#4CAF50</color>
+    <color name="accent_green">#69F0AE</color>
+    <color name="yellow">#FBC02D</color>
+    <color name="blue">#2196F3</color>
+
+    <color name="screen_background">#363636</color>
+    <color name="screen_background_90_alpha">#E6363636</color>
+
+    <color name="progress_bar_track_color">#616161</color>
+    <color name="progress_bar_status_color">@color/purple</color>
+
+    <color name="indicator_circle_color">#80FFFFFF</color>
+
+    <color name="bottom_navigation_item_color">#80FFFFFF</color>
+    <color name="bar_shadow_start_color">#C0FFFFFF</color>
+    <color name="bar_shadow_end_color">@android:color/transparent</color>
+</resources>
