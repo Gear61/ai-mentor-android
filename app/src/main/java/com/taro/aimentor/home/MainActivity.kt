@@ -1,9 +1,7 @@
 package com.taro.aimentor.home
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
 import android.view.Menu
 import android.view.MenuItem
 import com.taro.aimentor.R
