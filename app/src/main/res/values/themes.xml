@@ -13,4 +13,8 @@
         <item name="android:textColor">@color/text_normal</item>
         <item name="android:textSize">17sp</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>

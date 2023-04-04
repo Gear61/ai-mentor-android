@@ -5,6 +5,7 @@
     >
 
     <application
+        android:name=".init.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,14 +18,21 @@
         >
 
         <activity
-            android:name=".home.MainActivity"
+            android:name=".init.SplashActivity"
+            android:theme="@style/SplashTheme"
             android:exported="true"
+            android:screenOrientation="portrait"
             >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".home.MainActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 </manifest>
