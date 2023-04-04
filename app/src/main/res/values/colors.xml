@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="app_core_color">@color/purple</color>
-    <color name="status_bar_color">#6A1B9A</color>
-    <color name="accent_color">@color/purple</color>
+    <color name="app_core_color">@color/green</color>
+    <color name="status_bar_color">#388E3C</color>
+    <color name="accent_color">@color/green</color>
     <color name="black_50_alpha">#80000000</color>
     <color name="navigation_bar_color">@color/black</color>
 

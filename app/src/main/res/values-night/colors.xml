@@ -2,7 +2,7 @@
 <resources>
     <color name="app_core_color">#252525</color>
     <color name="status_bar_color">#101010</color>
-    <color name="accent_color">@color/purple</color>
+    <color name="accent_color">@color/green</color>
     <color name="black_50_alpha">#80000000</color>
     <color name="navigation_bar_color">#252525</color>
 
