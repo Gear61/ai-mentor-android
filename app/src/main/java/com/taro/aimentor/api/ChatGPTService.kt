@@ -1,11 +1,11 @@
 package com.taro.aimentor.api
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ChatGPTService {
 
-    @GET("chat/completions")
-    fun talkToChatGPT(@Query("page") page: Int, @Query("size") size: String): Call<ChatGPTApiResponse>
+    @POST("chat/completions")
+    fun talkToChatGPT(@Body requestBody: ChatGPTRequestBody): Call<ChatGPTApiResponse>
 }

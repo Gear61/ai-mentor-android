@@ -1,5 +1,6 @@
 package com.taro.aimentor.api
 
+import com.taro.aimentor.models.ChatMessage
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,26 +32,35 @@ class RestClient(private var listener: Listener) {
         chatGPTService = retrofit.create(ChatGPTService::class.java)
     }
 
-    /* fun fetchPictures(page: Int) {
-        catService.fetchCatPictures(page, ApiConstants.SMALL).enqueue(object :
-            Callback<List<CatPictureUrl>> {
-            override fun onResponse(call: Call<List<CatPictureUrl>>, response: Response<List<CatPictureUrl>>) {
+    fun getChatGPTResponse() {
+        val requestBody = ChatGPTRequestBody()
+        val initialMessage = ChatMessage()
+        initialMessage.role = "user"
+        initialMessage.content = "What's the capital of France?"
+        val messageList = listOf(initialMessage)
+        requestBody.messages = messageList
+
+        chatGPTService.talkToChatGPT(requestBody).enqueue(object : Callback<ChatGPTApiResponse> {
+            override fun onResponse(call: Call<ChatGPTApiResponse>, response: Response<ChatGPTApiResponse>) {
                 if (response.isSuccessful) {
-                    val urls = response.body()
-                    if (urls != null) {
-                        thumbnailUrls = response.body()
-                        maybeReturnResponse()
+                    val apiResponse = response.body()
+                    if (apiResponse != null) {
+                        listener.onResponseFetched(response = apiResponse.getText())
                     } else {
-                        onPictureFetchFail()
+                        println("SPAGHETTI - API response is null? " + response.message())
+                        listener.onResponseFailure()
                     }
                 } else {
-                    onPictureFetchFail()
+                    println("SPAGHETTI - Non-200 return code?!? " + response.message())
+                    listener.onResponseFailure()
                 }
             }
 
-            override fun onFailure(call: Call<List<CatPictureUrl>>, t: Throwable) {
-                onPictureFetchFail()
+            override fun onFailure(call: Call<ChatGPTApiResponse>, t: Throwable) {
+                println("SPAGHETTI - Straight up failure block: " + t.message)
+                println("SPAGHETTI - Straight up failure stack: " + t.stackTrace)
+                listener.onResponseFailure()
             }
         })
-    } */
+    }
 }

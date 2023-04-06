@@ -40,4 +40,11 @@ class ChatGPTApiResponse {
         @Expose
         val index: Int = 0
     }
+
+    fun getText(): String {
+        if (choices.isEmpty()) {
+            return ""
+        }
+        return choices[0].message.content
+    }
 }

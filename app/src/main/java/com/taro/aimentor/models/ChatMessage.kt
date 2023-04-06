@@ -7,9 +7,9 @@ class ChatMessage {
 
     @SerializedName("role")
     @Expose
-    val role: String = ""
+    var role: String = ""
 
     @SerializedName("content")
     @Expose
-    val content: String = ""
+    var content: String = ""
 }
