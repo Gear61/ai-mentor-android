@@ -5,4 +5,9 @@
     <string name="comment_composer_hint">Type in your thoughts here</string>
     <string name="blank_input_error">Your thoughts cannot be blank.</string>
     <string name="send_icon">{gmi-mail-send}</string>
+
+    <string name="chatgpt_error">
+        ChatGPT failed to return a response.
+        Please try again later.
+    </string>
 </resources>

@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
+import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.ActivityMainBinding
 import com.taro.aimentor.util.UIUtil
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var conversationManager: ConversationManager
     private lateinit var restClient: RestClient
+    private lateinit var conversationAdapter: ConversationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,9 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
 
         conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
+
+        conversationAdapter = ConversationAdapter()
+        binding.conversationList.adapter = conversationAdapter
         bindComposer()
     }
 
@@ -38,14 +43,21 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
             }
             conversationManager.onUserMessageSubmitted(textInput = textInput)
             val updatedConversation = conversationManager.getMessages()
+            conversationAdapter.submitList(updatedConversation)
+            binding.messageInput.setText("")
             restClient.getChatGPTResponse(conversation = updatedConversation)
         }
     }
 
     override fun onResponseFetched(response: String) {
-        Toast.makeText(this, response, Toast.LENGTH_LONG).show()
+        conversationManager.onChatGPTResponseReturned(response = response)
+        conversationAdapter.submitList(conversationManager.getMessages())
     }
 
     override fun onResponseFailure() {
+        UIUtil.showLongToast(
+            stringId = R.string.chatgpt_error,
+            context = this
+        )
     }
 }
