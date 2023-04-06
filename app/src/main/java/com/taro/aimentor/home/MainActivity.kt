@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
             conversationManager.onUserMessageSubmitted(textInput = textInput)
             val updatedConversation = conversationManager.getMessages()
             conversationAdapter.submitList(updatedConversation)
+            binding.conversationList.smoothScrollToPosition(updatedConversation.size - 1)
             binding.messageInput.setText("")
             binding.commentComposer.requestFocus()
             restClient.getChatGPTResponse(conversation = updatedConversation)
