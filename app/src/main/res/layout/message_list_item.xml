@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="4dp"
-    android:paddingHorizontal="8dp"
+    android:paddingVertical="6dp"
+    android:paddingHorizontal="12dp"
     >
 
     <Space
@@ -20,6 +20,9 @@
         android:layout_width="0dp"
         android:layout_weight="0.7"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:padding="12dp"
         />
 
     <Space

@@ -51,7 +51,9 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
 
     override fun onResponseFetched(response: String) {
         conversationManager.onChatGPTResponseReturned(response = response)
-        conversationAdapter.submitList(conversationManager.getMessages())
+        runOnUiThread {
+            conversationAdapter.submitList(conversationManager.getMessages())
+        }
     }
 
     override fun onResponseFailure() {
