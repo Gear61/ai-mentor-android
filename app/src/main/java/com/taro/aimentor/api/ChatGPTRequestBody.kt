@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.taro.aimentor.models.ChatMessage
 
-class ChatGPTRequestBody {
+class ChatGPTRequestBody(conversation: List<ChatMessage>) {
 
     @SerializedName("model")
     @Expose
@@ -17,4 +17,8 @@ class ChatGPTRequestBody {
     @SerializedName("temperature")
     @Expose
     val temperature: Float = 0.7f
+
+    init {
+        this.messages = conversation
+    }
 }

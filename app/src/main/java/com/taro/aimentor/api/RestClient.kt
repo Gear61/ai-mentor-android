@@ -32,14 +32,8 @@ class RestClient(private var listener: Listener) {
         chatGPTService = retrofit.create(ChatGPTService::class.java)
     }
 
-    fun getChatGPTResponse(input: String) {
-        val requestBody = ChatGPTRequestBody()
-        val initialMessage = ChatMessage()
-        initialMessage.role = "user"
-        initialMessage.content = input
-        val messageList = listOf(initialMessage)
-        requestBody.messages = messageList
-
+    fun getChatGPTResponse(conversation: List<ChatMessage>) {
+        val requestBody = ChatGPTRequestBody(conversation = conversation)
         chatGPTService.talkToChatGPT(requestBody).enqueue(object : Callback<ChatGPTApiResponse> {
             override fun onResponse(call: Call<ChatGPTApiResponse>, response: Response<ChatGPTApiResponse>) {
                 if (response.isSuccessful) {

@@ -1,4 +1,4 @@
-package com.taro.aimentor.home
+package com.taro.aimentor.conversation
 
 import android.view.LayoutInflater
 import android.view.View

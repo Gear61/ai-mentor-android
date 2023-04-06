@@ -5,12 +5,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
+import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.ActivityMainBinding
 import com.taro.aimentor.util.UIUtil
 
 class MainActivity : AppCompatActivity(), RestClient.Listener {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var conversationManager: ConversationManager
     private lateinit var restClient: RestClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
         bindComposer()
     }
@@ -33,7 +36,9 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
                 )
                 return@setOnClickListener
             }
-            restClient.getChatGPTResponse(input = textInput)
+            conversationManager.onUserMessageSubmitted(textInput = textInput)
+            val updatedConversation = conversationManager.getMessages()
+            restClient.getChatGPTResponse(conversation = updatedConversation)
         }
     }
 

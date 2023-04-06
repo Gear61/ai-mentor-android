@@ -30,7 +30,7 @@ class ChatGPTApiResponse {
 
         @SerializedName("message")
         @Expose
-        val message: ChatMessage = ChatMessage()
+        val message: ChatMessage? = null
 
         @SerializedName("finish_reason")
         @Expose
@@ -45,6 +45,6 @@ class ChatGPTApiResponse {
         if (choices.isEmpty()) {
             return ""
         }
-        return choices[0].message.content
+        return choices[0].message?.content ?: ""
     }
 }
