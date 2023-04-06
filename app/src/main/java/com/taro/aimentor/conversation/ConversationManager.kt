@@ -29,6 +29,10 @@ class ConversationManager {
     }
 
     fun getMessages(): List<ChatMessage> {
-        return messages
+        // Need to return a new object, because submitList() early returns on references being the same
+        // This means that even if the list has updated content, the contents won't redraw...
+        val conversationCopy = mutableListOf<ChatMessage>()
+        conversationCopy.addAll(messages)
+        return conversationCopy
     }
 }

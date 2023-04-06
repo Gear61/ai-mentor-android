@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
 
     override fun onResponseFetched(response: String) {
         conversationManager.onChatGPTResponseReturned(response = response)
-        runOnUiThread {
-            conversationAdapter.submitList(conversationManager.getMessages())
-        }
+        val updatedConversation = conversationManager.getMessages()
+        conversationAdapter.submitList(updatedConversation)
+        binding.conversationList.smoothScrollToPosition(updatedConversation.size - 1)
     }
 
     override fun onResponseFailure() {

@@ -11,14 +11,14 @@
     <Space
         android:id="@+id/start_filler"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.2"
         android:layout_height="1dp"
         />
 
     <TextView
         android:id="@+id/message_text"
         android:layout_width="0dp"
-        android:layout_weight="0.7"
+        android:layout_weight="0.8"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="17sp"
@@ -28,7 +28,7 @@
     <Space
         android:id="@+id/end_filler"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.2"
         android:layout_height="1dp"
         />
 </LinearLayout>
