@@ -41,15 +41,16 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginStart="12dp"
             android:inputType="textCapSentences|textMultiLine"
             android:background="@null"
             android:hint="@string/comment_composer_hint"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textColor="@color/text_normal"
             android:importantForAutofill="no"
             />
 
-        <TextView
+        <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/send_message_button"
             android:layout_width="64dp"
             android:layout_height="64dp"

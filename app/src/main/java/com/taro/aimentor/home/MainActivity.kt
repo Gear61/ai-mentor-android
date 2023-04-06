@@ -18,6 +18,13 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         setContentView(binding.root)
 
         restClient = RestClient(listener = this)
+        bindComposer()
+    }
+
+    private fun bindComposer() {
+        binding.sendMessageButton.setOnClickListener {
+
+        }
     }
 
     override fun onResponseFetched(response: String) {
