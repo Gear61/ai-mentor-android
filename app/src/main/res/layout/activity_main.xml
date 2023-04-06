@@ -2,15 +2,63 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/screen_background"
+    tools:ignore="SpUsage, UnusedAttribute"
     >
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/conversation_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello world!"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_divider_color"
+        />
+
+    <LinearLayout
+        android:id="@+id/comment_composer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <EditText
+            android:id="@+id/message_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:inputType="textCapSentences|textMultiLine"
+            android:background="@null"
+            android:hint="@string/comment_composer_hint"
+            android:textSize="15sp"
+            android:textColor="@color/text_normal"
+            android:importantForAutofill="no"
+            />
+
+        <TextView
+            android:id="@+id/send_message_button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/send_icon"
+            android:textSize="44dp"
+            android:textColor="@color/accent_color"
+            />
+    </LinearLayout>
 </LinearLayout>

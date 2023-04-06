@@ -47,18 +47,14 @@ class RestClient(private var listener: Listener) {
                     if (apiResponse != null) {
                         listener.onResponseFetched(response = apiResponse.getText())
                     } else {
-                        println("SPAGHETTI - API response is null? " + response.message())
                         listener.onResponseFailure()
                     }
                 } else {
-                    println("SPAGHETTI - Non-200 return code?!? " + response.message())
                     listener.onResponseFailure()
                 }
             }
 
             override fun onFailure(call: Call<ChatGPTApiResponse>, t: Throwable) {
-                println("SPAGHETTI - Straight up failure block: " + t.message)
-                println("SPAGHETTI - Straight up failure stack: " + t.stackTrace)
                 listener.onResponseFailure()
             }
         })

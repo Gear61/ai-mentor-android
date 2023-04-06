@@ -16,5 +16,5 @@ class ChatGPTRequestBody {
 
     @SerializedName("temperature")
     @Expose
-    val temperature: Float = 0.5f
+    val temperature: Float = 0.7f
 }

@@ -2,14 +2,10 @@ package com.taro.aimentor.util
 
 import android.app.Activity
 import android.content.Context
-import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.StringRes
-import com.joanzapata.iconify.Icon
-import com.joanzapata.iconify.IconDrawable
-import com.taro.aimentor.R
 
 object UIUtil {
 
@@ -25,11 +21,11 @@ object UIUtil {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun loadMenuIcon(menu: Menu, itemId: Int, icon: Icon?, context: Context?) {
+    /* fun loadMenuIcon(menu: Menu, itemId: Int, icon: Icon?, context: Context?) {
         menu.findItem(itemId).icon = IconDrawable(context, icon)
             .colorRes(R.color.white)
             .actionBarSize()
-    }
+    } */
 
     fun showShortToast(@StringRes stringId: Int, context: Context) {
         showToast(stringId, Toast.LENGTH_SHORT, context)
