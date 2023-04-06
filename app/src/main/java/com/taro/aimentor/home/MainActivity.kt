@@ -1,7 +1,6 @@
 package com.taro.aimentor.home
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
@@ -45,6 +44,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
             val updatedConversation = conversationManager.getMessages()
             conversationAdapter.submitList(updatedConversation)
             binding.messageInput.setText("")
+            binding.commentComposer.requestFocus()
             restClient.getChatGPTResponse(conversation = updatedConversation)
         }
     }

@@ -1,8 +1,10 @@
 package com.taro.aimentor.conversation
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -50,11 +52,26 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ConversationAdapter.Me
                 MessageType.USER -> {
                     startFiller.visibility = View.VISIBLE
                     endFiller.visibility = View.GONE
+                    val params = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        gravity = Gravity.END
+                    }
+                    messageText.layoutParams = params
                     messageText.setBackgroundResource(R.drawable.user_message_background)
+
                 }
                 MessageType.ASSISTANT -> {
                     startFiller.visibility = View.GONE
                     endFiller.visibility = View.VISIBLE
+                    val params = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        gravity = Gravity.START
+                    }
+                    messageText.layoutParams = params
                     messageText.setBackgroundResource(R.drawable.assistant_message_background)
                 }
                 else -> {
