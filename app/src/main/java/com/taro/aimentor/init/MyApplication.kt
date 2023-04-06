@@ -1,7 +1,6 @@
 package com.taro.aimentor.init
 
 import android.app.Application
-import android.widget.Toast
 
 class MyApplication : Application() {
 

@@ -12,4 +12,13 @@ class ChatMessage {
     @SerializedName("content")
     @Expose
     var content: String = ""
+
+    fun getType(): MessageType {
+        return when (role) {
+            "user" -> MessageType.USER
+            "assistant" -> MessageType.ASSISTANT
+            "system" -> MessageType.SYSTEM
+            else -> error("Unexpected message type - Role doesn't match!")
+        }
+    }
 }

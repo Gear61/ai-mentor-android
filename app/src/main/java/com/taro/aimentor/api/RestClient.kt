@@ -32,11 +32,11 @@ class RestClient(private var listener: Listener) {
         chatGPTService = retrofit.create(ChatGPTService::class.java)
     }
 
-    fun getChatGPTResponse() {
+    fun getChatGPTResponse(input: String) {
         val requestBody = ChatGPTRequestBody()
         val initialMessage = ChatMessage()
         initialMessage.role = "user"
-        initialMessage.content = "What's the capital of France?"
+        initialMessage.content = input
         val messageList = listOf(initialMessage)
         requestBody.messages = messageList
 
