@@ -29,8 +29,6 @@ class ConversationManager {
 
     // For passing to the API
     fun getOnlyCompleteMessages(): List<ChatMessage> {
-        // Need to return a new object, because submitList() early returns on references being the same
-        // This means that even if the list has updated content, the contents won't redraw...
         val conversationCopy = mutableListOf<ChatMessage>()
         conversationCopy.addAll(messages)
         return conversationCopy.filter { it.getState() == MessageState.COMPLETE }
@@ -38,8 +36,6 @@ class ConversationManager {
 
     // For the UI
     fun getAllMessages(): List<ChatMessage> {
-        // Need to return a new object, because submitList() early returns on references being the same
-        // This means that even if the list has updated content, the contents won't redraw...
         val conversationCopy = mutableListOf<ChatMessage>()
         conversationCopy.addAll(messages)
         return conversationCopy

@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.taro.aimentor.R
 import com.taro.aimentor.models.ChatMessage

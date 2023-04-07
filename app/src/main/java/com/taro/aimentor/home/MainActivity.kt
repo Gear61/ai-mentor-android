@@ -46,9 +46,11 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
 
             // Clean up the UI
             binding.chatEmptyState.visibility = View.GONE
-            binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
             binding.messageInput.setText("")
             binding.commentComposer.requestFocus()
+            binding.conversationList.post {
+                binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
+            }
 
             restClient.getChatGPTResponse(conversation = conversationManager.getOnlyCompleteMessages())
         }
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         conversationManager.onChatGPTResponseReturned(response = response)
         val updatedConversation = conversationManager.getAllMessages()
         conversationAdapter.submitList(updatedConversation)
+        conversationAdapter.notifyItemChanged(conversationAdapter.itemCount - 1)
         binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
     }
 
