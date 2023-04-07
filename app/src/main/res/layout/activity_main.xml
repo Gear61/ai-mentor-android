@@ -7,8 +7,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/screen_background"
-    tools:ignore="SpUsage, UnusedAttribute"
+    tools:ignore="SpUsage"
     >
+
+    <LinearLayout
+        android:id="@+id/chat_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="64dp"
+        android:paddingHorizontal="32dp"
+        android:orientation="vertical"
+        >
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:textColor="@color/text_normal"
+            android:textSize="180dp"
+            android:text="@string/conversation_icon"
+            android:gravity="center"
+            />
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/chat_empty_state_message"
+            android:textSize="19sp"
+            android:textColor="@color/text_normal"
+            />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/conversation_list"

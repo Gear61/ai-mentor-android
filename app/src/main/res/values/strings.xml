@@ -2,10 +2,16 @@
     <string name="app_name">AI Mentor</string>
     <string name="action_settings">Settings</string>
 
+    <string name="conversation_icon">{gmi-comments}</string>
+    <string name="chat_empty_state_message">
+        Share your thoughts below and hit {gmi-mail-send}
+        to start talking to ChatGPT!
+    </string>
     <string name="comment_composer_hint">Type in your thoughts here</string>
     <string name="blank_input_error">Your thoughts cannot be blank.</string>
     <string name="send_icon">{gmi-mail-send}</string>
 
+    <string name="chatgpt_thinking_message">Please wait as ChatGPT thinks&#8230;</string>
     <string name="chatgpt_error">
         ChatGPT failed to return a response.
         Please try again later.

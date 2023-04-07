@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.mikepenz:iconics-core:5.4.0'
     implementation 'com.mikepenz:iconics-views:5.4.0'
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
+    implementation 'com.airbnb.android:lottie:5.0.1'
 
     // API
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

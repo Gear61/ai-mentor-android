@@ -8,7 +8,8 @@ import com.taro.aimentor.api.USER_ROLE
 
 class ChatMessage(
     type: MessageType,
-    content: String = ""
+    content: String = "",
+    var state: MessageState = MessageState.COMPLETE
 ) {
 
     @SerializedName("role")
@@ -35,5 +36,10 @@ class ChatMessage(
             SYSTEM_ROLE -> MessageType.SYSTEM
             else -> error("Unexpected message type - Role doesn't match!")
         }
+    }
+
+    fun onMessageComplete(finalContent: String) {
+        content = finalContent
+        state = MessageState.COMPLETE
     }
 }

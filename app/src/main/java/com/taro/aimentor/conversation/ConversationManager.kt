@@ -1,6 +1,7 @@
 package com.taro.aimentor.conversation
 
 import com.taro.aimentor.models.ChatMessage
+import com.taro.aimentor.models.MessageState
 import com.taro.aimentor.models.MessageType
 
 /**
@@ -19,13 +20,17 @@ class ConversationManager {
         )
     }
 
-    fun onChatGPTResponseReturned(response: String) {
+    fun onResponseLoading() {
         messages.add(
             ChatMessage(
                 type = MessageType.ASSISTANT,
-                content = response
+                state = MessageState.LOADING
             )
         )
+    }
+
+    fun onChatGPTResponseReturned(response: String) {
+        messages.last().onMessageComplete(finalContent = response)
     }
 
     fun getMessages(): List<ChatMessage> {

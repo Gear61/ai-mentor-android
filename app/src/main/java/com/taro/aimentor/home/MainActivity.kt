@@ -1,6 +1,7 @@
 package com.taro.aimentor.home
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
@@ -41,12 +42,18 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
                 return@setOnClickListener
             }
             conversationManager.onUserMessageSubmitted(textInput = textInput)
-            val updatedConversation = conversationManager.getMessages()
-            conversationAdapter.submitList(updatedConversation)
-            binding.conversationList.smoothScrollToPosition(updatedConversation.size - 1)
+            val conversationWithUserInput = conversationManager.getMessages()
+            conversationManager.onResponseLoading()
+            val fullConversationForUI = conversationManager.getMessages()
+            conversationAdapter.submitList(fullConversationForUI)
+
+            // Clean up the UI
+            binding.chatEmptyState.visibility = View.GONE
+            binding.conversationList.smoothScrollToPosition(fullConversationForUI.size - 1)
             binding.messageInput.setText("")
             binding.commentComposer.requestFocus()
-            restClient.getChatGPTResponse(conversation = updatedConversation)
+
+            // restClient.getChatGPTResponse(conversation = conversationWithUserInput)
         }
     }
 
