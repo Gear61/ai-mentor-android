@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="17sp"
-            android:textColorLink="@color/blue"
+            android:textColorLink="@color/link_blue"
+            android:autoLink="web"
             android:padding="12dp"
             />
     </FrameLayout>

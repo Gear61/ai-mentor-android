@@ -1,5 +1,6 @@
 package com.taro.aimentor.conversation
 
+import android.text.method.LinkMovementMethod
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
