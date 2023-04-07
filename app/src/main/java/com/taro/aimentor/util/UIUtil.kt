@@ -6,6 +6,12 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.StringRes
+import com.taro.aimentor.R
+import io.noties.markwon.AbstractMarkwonPlugin
+import io.noties.markwon.Markwon
+import io.noties.markwon.MarkwonConfiguration
+import io.noties.markwon.core.MarkwonTheme
+import io.noties.markwon.html.HtmlPlugin
 
 object UIUtil {
 
@@ -37,5 +43,20 @@ object UIUtil {
 
     private fun showToast(@StringRes stringId: Int, duration: Int, context: Context) {
         Toast.makeText(context, stringId, duration).show()
+    }
+
+    fun getMarkwonInstance(
+        context: Context
+    ): Markwon {
+        return Markwon
+            .builder(context)
+            .usePlugin(HtmlPlugin.create())
+            .usePlugin(object : AbstractMarkwonPlugin() {
+                override fun configureTheme(builder: MarkwonTheme.Builder) {
+                    val bulletWidthPx = context.resources.getDimensionPixelSize(R.dimen.markdown_bullet_width)
+                    builder.bulletWidth(bulletWidthPx)
+                }
+            })
+            .build()
     }
 }

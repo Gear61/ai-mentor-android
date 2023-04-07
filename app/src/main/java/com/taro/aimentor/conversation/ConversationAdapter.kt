@@ -13,6 +13,7 @@ import com.taro.aimentor.R
 import com.taro.aimentor.models.ChatMessage
 import com.taro.aimentor.models.MessageState
 import com.taro.aimentor.models.MessageType
+import com.taro.aimentor.util.UIUtil
 
 open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCallBack()) {
 
@@ -108,7 +109,8 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
                     error("Unsupported message type to render for ConversationAdapter")
                 }
             }
-            messageText.text = chatMessage.content
+            UIUtil.getMarkwonInstance(context = itemView.context)
+                .setMarkdown(messageText, chatMessage.content)
         }
     }
 
