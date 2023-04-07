@@ -2,7 +2,6 @@
     <string name="app_name">AI Mentor</string>
     <string name="action_settings">Settings</string>
 
-    <string name="conversation_icon">{gmi-comments}</string>
     <string name="chat_empty_state_message">
         Share your thoughts below and hit {gmi-mail-send}
         to start talking to ChatGPT!
