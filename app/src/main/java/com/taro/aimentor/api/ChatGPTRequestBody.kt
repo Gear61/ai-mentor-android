@@ -1,14 +1,16 @@
 package com.taro.aimentor.api
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.taro.aimentor.models.ChatMessage
 
+@Keep
 class ChatGPTRequestBody(conversation: List<ChatMessage>) {
 
     @SerializedName("model")
     @Expose
-    val model: String = "gpt-3.5-turbo"
+    var model: String = GPT_MODEL_TYPE
 
     @SerializedName("messages")
     @Expose
@@ -16,7 +18,7 @@ class ChatGPTRequestBody(conversation: List<ChatMessage>) {
 
     @SerializedName("temperature")
     @Expose
-    val temperature: Float = 0.7f
+    var temperature: Float = MODEL_TEMPERATURE
 
     init {
         this.messages = conversation

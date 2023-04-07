@@ -7,7 +7,7 @@ const val BEARER_TOKEN_PREFIX = "Bearer "
 const val GPT_MODEL_TYPE = "gpt-3.5-turbo"
 
 // 0 is the most consistent, 1.0 is the most random and potentially creative
-const val TEMPERATURE = 0.7f
+const val MODEL_TEMPERATURE = 0.7f
 
 const val USER_ROLE = "user"
 const val ASSISTANT_ROLE = "assistant"

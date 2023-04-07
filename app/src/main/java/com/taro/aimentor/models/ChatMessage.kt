@@ -1,11 +1,13 @@
 package com.taro.aimentor.models
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.taro.aimentor.api.ASSISTANT_ROLE
 import com.taro.aimentor.api.SYSTEM_ROLE
 import com.taro.aimentor.api.USER_ROLE
 
+@Keep
 class ChatMessage(
     type: MessageType,
     content: String = ""
