@@ -11,7 +11,9 @@
     <string name="blank_input_error">Your thoughts cannot be blank.</string>
     <string name="send_icon">{gmi-mail-send}</string>
 
-    <string name="chatgpt_thinking_message">Please wait as ChatGPT thinks&#8230;</string>
+    <string name="chatgpt_thinking_message">
+        Please wait as ChatGPT is figuring out the best response&#8230;
+    </string>
     <string name="chatgpt_error">
         ChatGPT failed to return a response.
         Please try again later.

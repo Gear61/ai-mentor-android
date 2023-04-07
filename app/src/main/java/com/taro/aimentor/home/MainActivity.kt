@@ -42,26 +42,23 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
                 return@setOnClickListener
             }
             conversationManager.onUserMessageSubmitted(textInput = textInput)
-            val conversationWithUserInput = conversationManager.getMessages()
-            conversationManager.onResponseLoading()
-            val fullConversationForUI = conversationManager.getMessages()
-            conversationAdapter.submitList(fullConversationForUI)
+            conversationAdapter.submitList(conversationManager.getAllMessages())
 
             // Clean up the UI
             binding.chatEmptyState.visibility = View.GONE
-            binding.conversationList.smoothScrollToPosition(fullConversationForUI.size - 1)
+            binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
             binding.messageInput.setText("")
             binding.commentComposer.requestFocus()
 
-            // restClient.getChatGPTResponse(conversation = conversationWithUserInput)
+            restClient.getChatGPTResponse(conversation = conversationManager.getOnlyCompleteMessages())
         }
     }
 
     override fun onResponseFetched(response: String) {
         conversationManager.onChatGPTResponseReturned(response = response)
-        val updatedConversation = conversationManager.getMessages()
+        val updatedConversation = conversationManager.getAllMessages()
         conversationAdapter.submitList(updatedConversation)
-        binding.conversationList.smoothScrollToPosition(updatedConversation.size - 1)
+        binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
     }
 
     override fun onResponseFailure() {

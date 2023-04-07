@@ -20,13 +20,11 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
     class TaskDiffCallBack : DiffUtil.ItemCallback<ChatMessage>() {
         override fun areItemsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
             return oldItem.getType() == newItem.getType()
-                    && oldItem.state == newItem.state
                     && oldItem.content == newItem.content
         }
 
         override fun areContentsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
             return oldItem.getType() == newItem.getType()
-                    && oldItem.state == newItem.state
                     && oldItem.content == newItem.content
         }
     }
@@ -37,7 +35,7 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position).state) {
+        return when (getItem(position).getState()) {
             MessageState.COMPLETE -> MESSAGE_VIEW_TYPE
             MessageState.LOADING -> LOADING_THOUGHTS_VIEW_TYPE
         }
@@ -68,7 +66,7 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        when (getItem(position).state) {
+        when (getItem(position).getState()) {
             MessageState.COMPLETE -> (holder as MessageViewHolder).bind(position = position)
             MessageState.LOADING -> {}
         }
