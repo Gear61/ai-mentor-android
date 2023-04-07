@@ -7,6 +7,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class RestClient(private var listener: Listener) {
 
@@ -21,6 +22,8 @@ class RestClient(private var listener: Listener) {
     init {
         val client = OkHttpClient.Builder()
             .addInterceptor(RequestInterceptor())
+            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
             .build()
 
         val retrofit = Retrofit.Builder()
