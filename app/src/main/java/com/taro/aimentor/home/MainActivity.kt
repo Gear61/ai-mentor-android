@@ -1,8 +1,12 @@
 package com.taro.aimentor.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
@@ -77,5 +81,33 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
             stringId = R.string.chatgpt_error,
             context = this
         )
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun startActivityForResult(intent: Intent, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
+        overridePendingTransition(R.anim.slide_left_out, R.anim.slide_left_in)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        UIUtil.loadMenuIcon(
+            menu = menu!!,
+            itemId = R.id.settings,
+            icon = MaterialDesignIconic.Icon.gmi_settings,
+            context = this
+        )
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings -> {
+                return true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 }

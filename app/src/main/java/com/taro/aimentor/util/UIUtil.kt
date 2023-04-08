@@ -2,10 +2,17 @@ package com.taro.aimentor.util
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
+import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.StringRes
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import com.taro.aimentor.R
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
@@ -26,14 +33,11 @@ object UIUtil {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    /* fun loadMenuIcon(menu: Menu, itemId: Int, icon: Icon?, context: Context?) {
-        menu.findItem(itemId).icon = IconDrawable(context, icon)
-            .colorRes(R.color.white)
-            .actionBarSize()
-    } */
-
-    fun showShortToast(@StringRes stringId: Int, context: Context) {
-        showToast(stringId, Toast.LENGTH_SHORT, context)
+    fun loadMenuIcon(menu: Menu, itemId: Int, icon: IIcon, context: Context) {
+        menu.findItem(itemId).icon = IconicsDrawable(context, icon).apply {
+            colorInt = Color.WHITE
+            sizeDp = 24
+        }
     }
 
     fun showLongToast(@StringRes stringId: Int, context: Context) {
