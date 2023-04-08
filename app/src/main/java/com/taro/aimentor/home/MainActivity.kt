@@ -33,6 +33,14 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
     private fun bindComposer() {
         binding.sendMessageButton.setOnClickListener {
             UIUtil.hideKeyboard(activity = this)
+            if (conversationManager.isChatGPTThinking()) {
+                UIUtil.showLongToast(
+                    stringId = R.string.wait_for_response_error,
+                    context = this
+                )
+                return@setOnClickListener
+            }
+
             val textInput = binding.messageInput.text.toString().trim()
             if (textInput.isBlank()) {
                 UIUtil.showLongToast(

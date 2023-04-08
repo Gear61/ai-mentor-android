@@ -40,4 +40,8 @@ class ConversationManager {
         conversationCopy.addAll(messages)
         return conversationCopy
     }
+
+    fun isChatGPTThinking(): Boolean {
+        return messages.isNotEmpty() && messages.last().getState() == MessageState.LOADING
+    }
 }

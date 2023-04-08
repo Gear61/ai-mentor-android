@@ -8,6 +8,9 @@
     </string>
     <string name="comment_composer_hint">Type in your thoughts here</string>
     <string name="blank_input_error">Your thoughts cannot be blank.</string>
+    <string name="wait_for_response_error">
+        Please wait for ChatGPT to respond before sharing more thoughts.
+    </string>
     <string name="send_icon">{gmi-mail-send}</string>
 
     <string name="chatgpt_thinking_message">
