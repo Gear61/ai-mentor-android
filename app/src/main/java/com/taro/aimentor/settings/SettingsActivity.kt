@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ShareCompat
@@ -39,6 +38,7 @@ class SettingsActivity : AppCompatActivity(), SettingsAdapter.Listener {
         binding.settingsOptions.addItemDecoration(itemDecorator)
         binding.settingsOptions.adapter = SettingsAdapter(
             resources = resources,
+            preferencesManager = PreferencesManager.getInstance(this),
             listener = this
         )
     }

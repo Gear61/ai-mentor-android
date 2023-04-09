@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.annotation.StringRes
 import com.mikepenz.iconics.IconicsDrawable
@@ -60,5 +61,10 @@ object UIUtil {
                 }
             })
             .build()
+    }
+
+    fun setCheckedImmediately(checkableView: CompoundButton, checked: Boolean) {
+        checkableView.isChecked = checked
+        checkableView.jumpDrawablesToCurrentState()
     }
 }
