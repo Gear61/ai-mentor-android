@@ -12,6 +12,7 @@ import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.ActivityMainBinding
+import com.taro.aimentor.settings.SettingsActivity
 import com.taro.aimentor.util.UIUtil
 
 class MainActivity : AppCompatActivity(), RestClient.Listener {
@@ -103,6 +104,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
                 return true
             }
             else -> {

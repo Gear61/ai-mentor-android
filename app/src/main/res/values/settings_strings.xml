@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Settings</string>
+
+    <string name="send_feedback">Send feedback</string>
+    <string name="share_this_app">Share this app</string>
+    <string name="rate_this_app">Rate this app</string>
+    <string name="source_code">Source code</string>
+    <array name="settings_options">
+        <item>@string/send_feedback</item>
+        <item>@string/share_this_app</item>
+        <item>@string/rate_this_app</item>
+        <item>@string/source_code</item>
+    </array>
+
+    <string name="play_store_error">Unable to open the Play Store.</string>
+    <string name="feedback_subject">AI MentorFeedback</string>
+    <string name="send_email">Send email</string>
+
+    <string name="email_icon">{gmi-email}</string>
+    <string name="share_icon">{gmi-share}</string>
+    <string name="rate_icon">{gmi-thumb-up}</string>
+    <string name="github_icon">{gmi-github}</string>
+    <array name="settings_icons">
+        <item>@string/email_icon</item>
+        <item>@string/share_icon</item>
+        <item>@string/rate_icon</item>
+        <item>@string/github_icon</item>
+    </array>
+
+    <string name="share_app_message">
+        Hey! I think you\'ll enjoy AI Mentor, a clean and completely free app to talk with an AI chat bot,
+        powered by ChatGPT.
+        Download it here: https://play.google.com/store/apps/details?id=com.randomappsinc.catpix
+    </string>
+</resources>
