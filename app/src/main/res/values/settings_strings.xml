@@ -14,8 +14,9 @@
     </array>
 
     <string name="play_store_error">Unable to open the Play Store.</string>
-    <string name="feedback_subject">AI MentorFeedback</string>
+    <string name="feedback_subject">AI Mentor Feedback</string>
     <string name="send_email">Send email</string>
+    <string name="share_ai_mentor_with">Share AI Mentor with</string>
 
     <string name="email_icon">{gmi-email}</string>
     <string name="share_icon">{gmi-share}</string>
