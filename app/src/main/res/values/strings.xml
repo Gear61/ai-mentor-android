@@ -20,4 +20,12 @@
         ChatGPT failed to return a response.
         Please try again later.
     </string>
+
+    <string name="please_rate">
+        Hey, it looks like you\'re a frequent user of AI Mentor!
+        If you have a couple seconds, please rate this app in the Google Play Store.
+        Every rating goes a long way towards helping us grow and improve the app!
+    </string>
+    <string name="will_rate">Sure, I\'ll help</string>
+    <string name="no_im_good">No, I\'m good</string>
 </resources>

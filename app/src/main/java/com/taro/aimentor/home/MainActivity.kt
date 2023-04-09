@@ -1,10 +1,13 @@
 package com.taro.aimentor.home
 
+import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.taro.aimentor.R
@@ -12,6 +15,7 @@ import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.ActivityMainBinding
+import com.taro.aimentor.persistence.PreferencesManager
 import com.taro.aimentor.settings.SettingsActivity
 import com.taro.aimentor.util.UIUtil
 
@@ -26,6 +30,23 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val preferencesManager = PreferencesManager.getInstance(this)
+        if (preferencesManager.logAppOpenAndCheckForRatingUpsell()) {
+            AlertDialog.Builder(this)
+                .setMessage(R.string.please_rate)
+                .setNegativeButton(R.string.no_im_good) { _: DialogInterface, _: Int -> }
+                .setPositiveButton(R.string.will_rate) { _: DialogInterface, _: Int ->
+                    val uri = Uri.parse("market://details?id=$packageName")
+                    val intent = Intent(Intent.ACTION_VIEW, uri)
+                    if (packageManager.queryIntentActivities(intent, 0).size <= 0) {
+                        UIUtil.showLongToast(R.string.play_store_error, this)
+                        return@setPositiveButton
+                    }
+                    startActivity(intent)
+                }
+                .show()
+        }
 
         conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
