@@ -19,8 +19,8 @@ android {
         applicationId "com.taro.aimentor"
         minSdk 24
         targetSdk 33
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
         signingConfig signingConfigs.release
     }
 
@@ -45,6 +45,7 @@ android {
 dependencies {
     // Core infra
     implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
 
     // UI
     implementation 'androidx.appcompat:appcompat:1.6.1'

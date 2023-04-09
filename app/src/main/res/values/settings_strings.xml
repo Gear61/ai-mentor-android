@@ -3,11 +3,13 @@
     <string name="settings">Settings</string>
 
     <string name="send_feedback">Send feedback</string>
+    <string name="dark_mode">Dark mode</string>
     <string name="share_this_app">Share this app</string>
     <string name="rate_this_app">Rate this app</string>
     <string name="source_code">Source code</string>
     <array name="settings_options">
         <item>@string/send_feedback</item>
+        <item>@string/dark_mode</item>
         <item>@string/share_this_app</item>
         <item>@string/rate_this_app</item>
         <item>@string/source_code</item>
@@ -19,11 +21,13 @@
     <string name="share_ai_mentor_with">Share AI Mentor with</string>
 
     <string name="email_icon">{gmi-email}</string>
+    <string name="dark_mode_icon">{gmi-brightness-6}</string>
     <string name="share_icon">{gmi-share}</string>
     <string name="rate_icon">{gmi-thumb-up}</string>
     <string name="github_icon">{gmi-github}</string>
     <array name="settings_icons">
         <item>@string/email_icon</item>
+        <item>@string/dark_mode_icon</item>
         <item>@string/share_icon</item>
         <item>@string/rate_icon</item>
         <item>@string/github_icon</item>

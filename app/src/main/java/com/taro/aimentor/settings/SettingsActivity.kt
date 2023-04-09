@@ -4,18 +4,25 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.taro.aimentor.R
 import com.taro.aimentor.databinding.SettingsBinding
+import com.taro.aimentor.persistence.PreferencesManager
+import com.taro.aimentor.theme.ThemeManager
+import com.taro.aimentor.theme.ThemeMode
 import com.taro.aimentor.util.UIUtil
 
 class SettingsActivity : AppCompatActivity(), SettingsAdapter.Listener {
 
     companion object {
         const val SUPPORT_EMAIL = "alex@jointaro.com"
+        const val DARK_MODE_POSITION = 1
         const val REPO_URL = "https://github.com/Gear61/ai-mentor-android"
     }
 
@@ -46,7 +53,17 @@ class SettingsActivity : AppCompatActivity(), SettingsAdapter.Listener {
                 startActivity(Intent.createChooser(sendIntent, getString(R.string.send_email)))
                 return
             }
-            1 -> {
+            1-> {
+                val preferencesManager = PreferencesManager.getInstance(this)
+                val secondCell: View = binding.settingsOptions.getChildAt(DARK_MODE_POSITION)
+                val darkModeToggle = secondCell.findViewById<SwitchCompat>(R.id.toggle)
+                darkModeToggle.isChecked = !darkModeToggle.isChecked
+                val themeMode: Int = if (darkModeToggle.isChecked) ThemeMode.DARK else ThemeMode.LIGHT
+                preferencesManager.themeMode = themeMode
+                ThemeManager.applyTheme(themeMode)
+                return
+            }
+            2 -> {
                 val shareIntent = ShareCompat.IntentBuilder(this)
                     .setChooserTitle(R.string.share_ai_mentor_with)
                     .setType("text/plain")
@@ -57,7 +74,7 @@ class SettingsActivity : AppCompatActivity(), SettingsAdapter.Listener {
                 }
                 return
             }
-            2 -> {
+            3 -> {
                 val packageName = packageName
                 val uri = Uri.parse("market://details?id=$packageName")
                 intent = Intent(Intent.ACTION_VIEW, uri)
@@ -69,7 +86,7 @@ class SettingsActivity : AppCompatActivity(), SettingsAdapter.Listener {
                     return
                 }
             }
-            3 -> intent = Intent(Intent.ACTION_VIEW, Uri.parse(REPO_URL))
+            4 -> intent = Intent(Intent.ACTION_VIEW, Uri.parse(REPO_URL))
         }
         startActivity(intent)
     }

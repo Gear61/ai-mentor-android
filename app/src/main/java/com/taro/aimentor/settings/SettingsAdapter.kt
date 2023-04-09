@@ -39,10 +39,16 @@ class SettingsAdapter(
     inner class SettingViewHolder(private val rootView: View) : RecyclerView.ViewHolder(rootView) {
         private var icon: TextView = rootView.findViewById(R.id.settings_icon)
         private var option: TextView = rootView.findViewById(R.id.settings_option)
+        private var toggle: TextView = rootView.findViewById(R.id.toggle)
 
         fun loadSetting(position: Int) {
             icon.text = icons[position]
             option.text = options[position]
+            if (position == SettingsActivity.DARK_MODE_POSITION) {
+                toggle.visibility = View.VISIBLE
+            } else {
+                toggle.visibility = View.GONE
+            }
             rootView.setOnClickListener {
                 listener.onItemClick(position = position)
             }

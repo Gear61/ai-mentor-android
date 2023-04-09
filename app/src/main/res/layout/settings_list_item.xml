@@ -22,12 +22,19 @@
 
     <TextView
         android:id="@+id/settings_option"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:gravity="center_vertical"
         android:textSize="18dp"
         android:textColor="@color/text_normal"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         />
 </LinearLayout>
