@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.taro.aimentor.R
 import com.taro.aimentor.databinding.SettingsBinding
 import com.taro.aimentor.util.UIUtil
@@ -25,6 +27,9 @@ class SettingsActivity : AppCompatActivity(), SettingsAdapter.Listener {
         setContentView(binding.root)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        val itemDecorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        itemDecorator.setDrawable(ContextCompat.getDrawable(this, R.drawable.line_divider)!!)
+        binding.settingsOptions.addItemDecoration(itemDecorator)
         binding.settingsOptions.adapter = SettingsAdapter(
             resources = resources,
             listener = this
