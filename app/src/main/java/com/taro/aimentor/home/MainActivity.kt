@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsCompat
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
@@ -54,6 +55,21 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         conversationAdapter = ConversationAdapter()
         binding.conversationList.adapter = conversationAdapter
         bindComposer()
+
+        val rootView = findViewById<View>(android.R.id.content).rootView
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val keyboardVisible = WindowInsetsCompat
+                .toWindowInsetsCompat(rootView.rootWindowInsets)
+                .isVisible(WindowInsetsCompat.Type.ime())
+
+            // When the keyboard is open, scroll the conversation to the bottom
+            // It looks like you don't get punished for over-scrolling, so using 9001 for the memes
+            if (keyboardVisible) {
+                binding.conversationList.post {
+                    binding.conversationList.smoothScrollBy(0, 9001)
+                }
+            }
+        }
     }
 
     private fun bindComposer() {
@@ -95,7 +111,6 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         val updatedConversation = conversationManager.getAllMessages()
         conversationAdapter.submitList(updatedConversation)
         conversationAdapter.notifyItemChanged(conversationAdapter.itemCount - 1)
-        binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
     }
 
     override fun onResponseFailure() {
