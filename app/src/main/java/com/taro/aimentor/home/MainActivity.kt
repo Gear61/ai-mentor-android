@@ -152,6 +152,11 @@ class MainActivity : AppCompatActivity(), RestClient.Listener, ConversationAdapt
         overridePendingTransition(R.anim.slide_left_out, R.anim.slide_left_in)
     }
 
+    override fun finish() {
+        restClient.cleanUp(activity = this)
+        super.finish()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         UIUtil.loadMenuIcon(

@@ -1,5 +1,6 @@
 package com.taro.aimentor.api
 
+import android.app.Activity
 import com.taro.aimentor.models.ChatMessage
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit
 class RestClient(private var listener: Listener) {
 
     private var chatGPTService: ChatGPTService
+    private var currentApiCall: Call<ChatGPTApiResponse>? = null
 
     interface Listener {
         fun onResponseFetched(response: String)
@@ -37,7 +39,8 @@ class RestClient(private var listener: Listener) {
 
     fun getChatGPTResponse(conversation: List<ChatMessage>) {
         val requestBody = ChatGPTRequestBody(conversation = conversation)
-        chatGPTService.talkToChatGPT(requestBody).enqueue(object : Callback<ChatGPTApiResponse> {
+        currentApiCall = chatGPTService.talkToChatGPT(requestBody)
+        currentApiCall!!.enqueue(object : Callback<ChatGPTApiResponse> {
             override fun onResponse(call: Call<ChatGPTApiResponse>, response: Response<ChatGPTApiResponse>) {
                 if (response.isSuccessful) {
                     val apiResponse = response.body()
@@ -52,8 +55,19 @@ class RestClient(private var listener: Listener) {
             }
 
             override fun onFailure(call: Call<ChatGPTApiResponse>, t: Throwable) {
-                listener.onResponseFailure()
+                if (!call.isCanceled) {
+                    listener.onResponseFailure()
+                }
             }
         })
+    }
+
+    fun cleanUp(activity: Activity) {
+        if (currentApiCall == null) {
+            return
+        }
+        activity.runOnUiThread {
+            currentApiCall?.cancel()
+        }
     }
 }
