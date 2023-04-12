@@ -1,42 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingVertical="6dp"
     android:paddingHorizontal="12dp"
+    tools:ignore="SpUsage"
     >
 
-    <Space
-        android:id="@+id/start_filler"
-        android:layout_width="0dp"
-        android:layout_weight="0.15"
-        android:layout_height="1dp"
-        />
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_weight="0.85"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         >
 
-        <TextView
-            android:id="@+id/message_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:textColorLink="@color/link_blue"
-            android:autoLink="web"
-            android:padding="12dp"
+        <Space
+            android:id="@+id/start_filler"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="1dp"
             />
-    </FrameLayout>
 
-    <Space
-        android:id="@+id/end_filler"
-        android:layout_width="0dp"
-        android:layout_weight="0.15"
-        android:layout_height="1dp"
-        />
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textColorLink="@color/link_blue"
+                android:autoLink="web"
+                android:padding="12dp"
+                />
+        </FrameLayout>
+
+        <Space
+            android:id="@+id/end_filler"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="1dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/message_action_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:orientation="horizontal"
+        >
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/copy_message_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/copy_icon"
+            android:textSize="24dp"
+            android:textColor="@color/text_normal"
+            />
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/share_message_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/share_icon"
+            android:textSize="24dp"
+            android:textColor="@color/text_normal"
+            />
+    </LinearLayout>
 </LinearLayout>

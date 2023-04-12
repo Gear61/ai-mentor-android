@@ -12,6 +12,7 @@
         Please wait for ChatGPT to respond before sharing more thoughts.
     </string>
     <string name="send_icon">{gmi-mail-send}</string>
+    <string name="copy_icon">{gmi-copy}</string>
 
     <string name="chatgpt_thinking_message">
         Please wait as ChatGPT is figuring out the best response&#8230;

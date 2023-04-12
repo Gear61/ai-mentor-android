@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -76,6 +77,7 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
         private val startFiller: View = itemView.findViewById(R.id.start_filler)
         private val endFiller: View = itemView.findViewById(R.id.end_filler)
         private val messageText: TextView = itemView.findViewById(R.id.message_text)
+        private val actionButtons: View = itemView.findViewById(R.id.message_action_buttons)
 
         fun bind(position: Int) {
             val chatMessage = getItem(position)
@@ -92,10 +94,18 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
                     messageText.layoutParams = params
                     messageText.setBackgroundResource(R.drawable.user_message_background)
 
+                    val actionButtonParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        gravity = Gravity.END
+                    }
+                    actionButtons.layoutParams = actionButtonParams
                 }
                 MessageType.ASSISTANT -> {
                     startFiller.visibility = View.GONE
                     endFiller.visibility = View.VISIBLE
+
                     val params = FrameLayout.LayoutParams(
                         FrameLayout.LayoutParams.WRAP_CONTENT,
                         FrameLayout.LayoutParams.WRAP_CONTENT
@@ -104,6 +114,14 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
                     }
                     messageText.layoutParams = params
                     messageText.setBackgroundResource(R.drawable.assistant_message_background)
+
+                    val actionButtonParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        gravity = Gravity.START
+                    }
+                    actionButtons.layoutParams = actionButtonParams
                 }
                 else -> {
                     error("Unsupported message type to render for ConversationAdapter")
