@@ -16,7 +16,15 @@ import com.taro.aimentor.models.MessageState
 import com.taro.aimentor.models.MessageType
 import com.taro.aimentor.util.UIUtil
 
-open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCallBack()) {
+open class ConversationAdapter(
+    val listener: Listener
+) : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCallBack()) {
+
+    interface Listener {
+        fun onCopyMessageClicked(message: ChatMessage)
+
+        fun onShareMessageClicked(message: ChatMessage)
+    }
 
     class TaskDiffCallBack : DiffUtil.ItemCallback<ChatMessage>() {
         override fun areItemsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
@@ -78,6 +86,8 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
         private val endFiller: View = itemView.findViewById(R.id.end_filler)
         private val messageText: TextView = itemView.findViewById(R.id.message_text)
         private val actionButtons: View = itemView.findViewById(R.id.message_action_buttons)
+        private val copyButton: View = itemView.findViewById(R.id.copy_message_button)
+        private val shareButton: View = itemView.findViewById(R.id.share_message_button)
 
         fun bind(position: Int) {
             val chatMessage = getItem(position)
@@ -129,6 +139,12 @@ open class ConversationAdapter : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCa
             }
             UIUtil.getMarkwonInstance(context = itemView.context)
                 .setMarkdown(messageText, chatMessage.content)
+            copyButton.setOnClickListener {
+                listener.onCopyMessageClicked(message = chatMessage)
+            }
+            shareButton.setOnClickListener {
+                listener.onShareMessageClicked(message = chatMessage)
+            }
         }
     }
 

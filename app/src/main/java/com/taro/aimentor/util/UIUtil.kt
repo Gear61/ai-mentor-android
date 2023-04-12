@@ -33,14 +33,29 @@ object UIUtil {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun loadMenuIcon(menu: Menu, itemId: Int, icon: IIcon, context: Context) {
+    fun loadMenuIcon(
+        menu: Menu,
+        itemId: Int,
+        icon: IIcon,
+        context: Context
+    ) {
         menu.findItem(itemId).icon = IconicsDrawable(context, icon).apply {
             colorInt = Color.WHITE
             sizeDp = 24
         }
     }
 
-    fun showLongToast(@StringRes stringId: Int, context: Context) {
+    fun showShortToast(
+        @StringRes stringId:
+        Int, context: Context
+    ) {
+        showToast(stringId, Toast.LENGTH_SHORT, context)
+    }
+
+    fun showLongToast(
+        @StringRes stringId:
+        Int, context: Context
+    ) {
         showToast(stringId, Toast.LENGTH_LONG, context)
     }
 

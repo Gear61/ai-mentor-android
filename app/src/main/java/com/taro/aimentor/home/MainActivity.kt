@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.core.view.WindowInsetsCompat
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.taro.aimentor.R
@@ -16,11 +17,13 @@ import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.ActivityMainBinding
+import com.taro.aimentor.models.ChatMessage
 import com.taro.aimentor.persistence.PreferencesManager
 import com.taro.aimentor.settings.SettingsActivity
+import com.taro.aimentor.util.ClipboardUtil
 import com.taro.aimentor.util.UIUtil
 
-class MainActivity : AppCompatActivity(), RestClient.Listener {
+class MainActivity : AppCompatActivity(), RestClient.Listener, ConversationAdapter.Listener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var conversationManager: ConversationManager
@@ -52,7 +55,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
         conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
 
-        conversationAdapter = ConversationAdapter()
+        conversationAdapter = ConversationAdapter(listener = this)
         binding.conversationList.adapter = conversationAdapter
         bindComposer()
 
@@ -118,6 +121,29 @@ class MainActivity : AppCompatActivity(), RestClient.Listener {
             stringId = R.string.chatgpt_error,
             context = this
         )
+    }
+
+    override fun onCopyMessageClicked(message: ChatMessage) {
+        ClipboardUtil.copyTextToClipboard(
+            textToCopy = message.content,
+            label = getString(R.string.ai_mentor_text_label),
+            context = this
+        )
+        UIUtil.showShortToast(
+            stringId = R.string.text_successfully_copied,
+            context = this
+        )
+    }
+
+    override fun onShareMessageClicked(message: ChatMessage) {
+        val shareIntent = ShareCompat.IntentBuilder(this)
+            .setChooserTitle(R.string.share_text_with)
+            .setType("text/plain")
+            .setText(message.content)
+            .intent
+        if (shareIntent.resolveActivity(packageManager) != null) {
+            startActivity(shareIntent)
+        }
     }
 
     @Deprecated("Deprecated in Java")

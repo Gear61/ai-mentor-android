@@ -22,6 +22,10 @@
         Please try again later.
     </string>
 
+    <string name="text_successfully_copied">Text copied to your clipboard.</string>
+    <string name="ai_mentor_text_label">AI Mentor text</string>
+    <string name="share_text_with">Share text with</string>
+
     <string name="please_rate">
         Hey, it looks like you\'re a frequent user of AI Mentor!
         If you have a couple seconds, please rate this app in the Google Play Store.

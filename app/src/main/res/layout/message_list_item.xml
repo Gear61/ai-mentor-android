@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingVertical="6dp"
-    android:paddingHorizontal="12dp"
+    android:paddingTop="6dp"
     tools:ignore="SpUsage"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
         android:orientation="horizontal"
         >
 
@@ -54,7 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="4dp"
+        android:paddingBottom="6dp"
+        android:paddingHorizontal="12dp"
         android:orientation="horizontal"
+        android:clipToPadding="false"
+        android:clipChildren="false"
         >
 
         <com.mikepenz.iconics.view.IconicsTextView
