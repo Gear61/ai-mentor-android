@@ -29,8 +29,9 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var conversationManager: ConversationManager
-    private lateinit var restClient: RestClient
     private lateinit var conversationAdapter: ConversationAdapter
+    private lateinit var restClient: RestClient
+    private lateinit var textToSpeechManager: TextToSpeechManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +57,10 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
 
         conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
+        textToSpeechManager = TextToSpeechManager(
+            context = this,
+            listener = this
+        )
 
         conversationAdapter = ConversationAdapter(listener = this)
         binding.conversationList.adapter = conversationAdapter
@@ -148,6 +153,10 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
         }
     }
 
+    override fun onSpeakMessageClicked(message: ChatMessage) {
+        textToSpeechManager.speak(text = message.content)
+    }
+
     override fun onTextToSpeechFailure() {
         UIUtil.showLongToast(
             stringId = R.string.tts_failure_message,
@@ -163,6 +172,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
 
     override fun finish() {
         restClient.cleanUp(activity = this)
+        textToSpeechManager.shutdown()
         super.finish()
     }
 
@@ -170,6 +180,12 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
         menuInflater.inflate(R.menu.menu_main, menu)
         UIUtil.loadMenuIcon(
             menu = menu!!,
+            itemId = R.id.stop_speaking,
+            icon = MaterialDesignIconic.Icon.gmi_volume_off,
+            context = this
+        )
+        UIUtil.loadMenuIcon(
+            menu = menu,
             itemId = R.id.settings,
             icon = MaterialDesignIconic.Icon.gmi_settings,
             context = this

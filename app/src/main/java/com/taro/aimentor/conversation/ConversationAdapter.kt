@@ -24,6 +24,8 @@ open class ConversationAdapter(
         fun onCopyMessageClicked(message: ChatMessage)
 
         fun onShareMessageClicked(message: ChatMessage)
+
+        fun onSpeakMessageClicked(message: ChatMessage)
     }
 
     class TaskDiffCallBack : DiffUtil.ItemCallback<ChatMessage>() {
@@ -88,6 +90,7 @@ open class ConversationAdapter(
         private val actionButtons: View = itemView.findViewById(R.id.message_action_buttons)
         private val copyButton: View = itemView.findViewById(R.id.copy_message_button)
         private val shareButton: View = itemView.findViewById(R.id.share_message_button)
+        private val speakButton: View = itemView.findViewById(R.id.speak_message_button)
 
         fun bind(position: Int) {
             val chatMessage = getItem(position)
@@ -144,6 +147,9 @@ open class ConversationAdapter(
             }
             shareButton.setOnClickListener {
                 listener.onShareMessageClicked(message = chatMessage)
+            }
+            speakButton.setOnClickListener {
+                listener.onSpeakMessageClicked(message = chatMessage)
             }
         }
     }

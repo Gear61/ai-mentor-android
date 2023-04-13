@@ -8,6 +8,7 @@ import android.media.AudioManager
 import android.media.AudioManager.OnAudioFocusChangeListener
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.speech.tts.TextToSpeech.OnInitListener
 import android.speech.tts.UtteranceProgressListener
@@ -25,6 +26,7 @@ class TextToSpeechManager(
     private val textToSpeech: TextToSpeech
     private var enabled = false
     private val audioManager: AudioManager
+    private val audioFocusChangeListener: OnAudioFocusChangeListener
 
     // Oreo audio focus shenanigans
     private var audioFocusRequest: AudioFocusRequest? = null
@@ -32,6 +34,14 @@ class TextToSpeechManager(
     init {
         textToSpeech = TextToSpeech(context, this)
         textToSpeech.language = Locale.getDefault()
+        audioFocusChangeListener = OnAudioFocusChangeListener { focusChange: Int ->
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS
+                || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT
+                || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK
+            ) {
+                stopSpeaking()
+            }
+        }
         audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             initializeOAudioFocusParams()
@@ -47,7 +57,7 @@ class TextToSpeechManager(
         audioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
             .setAudioAttributes(ttsAttributes)
             .setAcceptsDelayedFocusGain(true)
-            .setOnAudioFocusChangeListener(audioFocusChangeListener, Handler())
+            .setOnAudioFocusChangeListener(audioFocusChangeListener, Handler(Looper.getMainLooper()))
             .build()
     }
 
@@ -60,7 +70,7 @@ class TextToSpeechManager(
                 requestAudioFocusPreO(text)
             }
         } else {
-            listener!!.onTextToSpeechFailure()
+            listener?.onTextToSpeechFailure()
         }
     }
 
@@ -78,7 +88,7 @@ class TextToSpeechManager(
         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             playTts(text)
         } else {
-            listener!!.onTextToSpeechFailure()
+            listener?.onTextToSpeechFailure()
         }
     }
 
@@ -105,20 +115,10 @@ class TextToSpeechManager(
             }
 
             override fun onError(utteranceId: String) {
-                listener!!.onTextToSpeechFailure()
+                listener?.onTextToSpeechFailure()
             }
         })
     }
-
-    private val audioFocusChangeListener =
-        OnAudioFocusChangeListener { focusChange: Int ->
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS
-                || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT
-                || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK
-            ) {
-                stopSpeaking()
-            }
-        }
 
     fun stopSpeaking() {
         if (textToSpeech.isSpeaking) {

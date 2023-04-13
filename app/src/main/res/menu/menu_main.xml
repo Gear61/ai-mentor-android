@@ -4,8 +4,14 @@
     >
 
     <item
+        android:id="@+id/stop_speaking"
+        android:title="@string/stop_speaking"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/settings"
-        android:title="@string/action_settings"
-        app:showAsAction="always"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom"
         />
 </menu>

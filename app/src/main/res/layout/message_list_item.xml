@@ -82,5 +82,16 @@
             android:textSize="24dp"
             android:textColor="@color/text_normal"
             />
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/speak_message_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/speech_icon"
+            android:textSize="24dp"
+            android:textColor="@color/text_normal"
+            />
     </LinearLayout>
 </LinearLayout>
