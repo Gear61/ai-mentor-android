@@ -11,7 +11,11 @@ class TextOptionsDialog(
 ) {
 
     interface Listener {
+        fun onCopyMessageClicked(message: ChatMessage)
 
+        fun onShareMessageClicked(message: ChatMessage)
+
+        fun onSpeakMessageClicked(message: ChatMessage)
     }
 
     private var chatMessage: ChatMessage? = null
@@ -20,11 +24,11 @@ class TextOptionsDialog(
     init {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(R.string.text_options_dialog_title)
-        builder.setItems(R.array.conversation_text_options) { dialog, which ->
+        builder.setItems(R.array.conversation_text_options) { _, which ->
             when (which) {
-                0 -> { /* horse */ }
-                1 -> { /* cow   */ }
-                2 -> { /* camel */ }
+                0 -> listener?.onCopyMessageClicked(message = chatMessage!!)
+                1 -> listener?.onShareMessageClicked(message = chatMessage!!)
+                2 -> listener?.onSpeakMessageClicked(message = chatMessage!!)
             }
         }
 
