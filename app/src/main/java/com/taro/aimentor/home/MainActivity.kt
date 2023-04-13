@@ -20,10 +20,12 @@ import com.taro.aimentor.databinding.ActivityMainBinding
 import com.taro.aimentor.models.ChatMessage
 import com.taro.aimentor.persistence.PreferencesManager
 import com.taro.aimentor.settings.SettingsActivity
+import com.taro.aimentor.speech.TextToSpeechManager
 import com.taro.aimentor.util.ClipboardUtil
 import com.taro.aimentor.util.UIUtil
 
-class MainActivity : AppCompatActivity(), RestClient.Listener, ConversationAdapter.Listener {
+class MainActivity : AppCompatActivity(), RestClient.Listener,
+    ConversationAdapter.Listener, TextToSpeechManager.Listener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var conversationManager: ConversationManager
@@ -144,6 +146,13 @@ class MainActivity : AppCompatActivity(), RestClient.Listener, ConversationAdapt
         if (shareIntent.resolveActivity(packageManager) != null) {
             startActivity(shareIntent)
         }
+    }
+
+    override fun onTextToSpeechFailure() {
+        UIUtil.showLongToast(
+            stringId = R.string.tts_failure_message,
+            context = this
+        )
     }
 
     @Deprecated("Deprecated in Java")

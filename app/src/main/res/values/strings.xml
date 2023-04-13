@@ -13,6 +13,9 @@
     </string>
     <string name="send_icon">{gmi-mail-send}</string>
     <string name="copy_icon">{gmi-copy}</string>
+    <string name="tts_failure_message">
+        We were unable to initialize your device\'s Text To Speech engine
+    </string>
 
     <string name="chatgpt_thinking_message">
         Please wait as ChatGPT is figuring out the best response&#8230;
