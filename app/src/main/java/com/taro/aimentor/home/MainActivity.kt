@@ -195,6 +195,10 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.stop_speaking -> {
+                textToSpeechManager.stopSpeaking()
+                return true
+            }
             R.id.settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
                 return true
