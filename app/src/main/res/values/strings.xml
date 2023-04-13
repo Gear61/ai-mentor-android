@@ -18,6 +18,13 @@
         We were unable to initialize your device\'s Text To Speech engine
     </string>
 
+    <string name="text_options_dialog_title">Text Options</string>
+    <array name="conversation_text_options">
+        <item>Copy</item>
+        <item>Share</item>
+        <item>Speak</item>
+    </array>
+
     <string name="chatgpt_thinking_message">
         Please wait as ChatGPT is figuring out the best response&#8230;
     </string>

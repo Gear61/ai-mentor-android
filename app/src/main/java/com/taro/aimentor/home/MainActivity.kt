@@ -16,6 +16,7 @@ import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
+import com.taro.aimentor.conversation.TextOptionsDialog
 import com.taro.aimentor.databinding.ActivityMainBinding
 import com.taro.aimentor.models.ChatMessage
 import com.taro.aimentor.persistence.PreferencesManager
@@ -25,13 +26,14 @@ import com.taro.aimentor.util.ClipboardUtil
 import com.taro.aimentor.util.UIUtil
 
 class MainActivity : AppCompatActivity(), RestClient.Listener,
-    ConversationAdapter.Listener, TextToSpeechManager.Listener {
+    ConversationAdapter.Listener, TextToSpeechManager.Listener, TextOptionsDialog.Listener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var conversationManager: ConversationManager
     private lateinit var conversationAdapter: ConversationAdapter
     private lateinit var restClient: RestClient
     private lateinit var textToSpeechManager: TextToSpeechManager
+    private lateinit var textOptionsDialog: TextOptionsDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +60,10 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
         conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
         textToSpeechManager = TextToSpeechManager(
+            context = this,
+            listener = this
+        )
+        textOptionsDialog = TextOptionsDialog(
             context = this,
             listener = this
         )
@@ -130,6 +136,10 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
         )
     }
 
+    override fun onMessageClicked(message: ChatMessage) {
+        textOptionsDialog.show(message = message)
+    }
+
     override fun onCopyMessageClicked(message: ChatMessage) {
         ClipboardUtil.copyTextToClipboard(
             textToCopy = message.content,
@@ -173,6 +183,7 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
     override fun finish() {
         restClient.cleanUp(activity = this)
         textToSpeechManager.shutdown()
+        textOptionsDialog.cleanUp()
         super.finish()
     }
 

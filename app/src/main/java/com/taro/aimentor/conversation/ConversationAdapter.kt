@@ -21,6 +21,8 @@ open class ConversationAdapter(
 ) : ListAdapter<ChatMessage, ViewHolder>(TaskDiffCallBack()) {
 
     interface Listener {
+        fun onMessageClicked(message: ChatMessage)
+
         fun onCopyMessageClicked(message: ChatMessage)
 
         fun onShareMessageClicked(message: ChatMessage)
@@ -142,6 +144,9 @@ open class ConversationAdapter(
             }
             UIUtil.getMarkwonInstance(context = itemView.context)
                 .setMarkdown(messageText, chatMessage.content)
+            messageText.setOnClickListener {
+                listener.onMessageClicked(message = chatMessage)
+            }
             copyButton.setOnClickListener {
                 listener.onCopyMessageClicked(message = chatMessage)
             }
