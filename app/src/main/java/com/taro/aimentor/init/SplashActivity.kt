@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.home.MainActivity
+import com.taro.aimentor.onboarding.OnboardingActivity
+import com.taro.aimentor.persistence.PreferencesManager
 
 class SplashActivity : AppCompatActivity() {
 
@@ -19,7 +21,12 @@ class SplashActivity : AppCompatActivity() {
             return
         }
 
-        startActivity(Intent(this, MainActivity::class.java))
+        val preferencesManager = PreferencesManager.getInstance(this)
+        if (preferencesManager.occupation.isBlank()) {
+            startActivity(Intent(this, OnboardingActivity::class.java))
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         finish()
     }
 }
