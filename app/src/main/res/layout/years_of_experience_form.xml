@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:ignore="SpUsage, ContentDescription, UnusedAttribute"
+    >
+
+    <TextView
+        android:text="@string/years_of_experience_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:textColor="@color/text_title"
+        />
+
+    <EditText
+        android:id="@+id/years_of_experience_input"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:textSize="15sp"
+        android:textColor="@color/text_normal"
+        android:paddingStart="8dp"
+        android:paddingEnd="44dp"
+        android:background="@drawable/rounded_edittext_background"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
+        />
+</LinearLayout>

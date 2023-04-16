@@ -7,7 +7,14 @@
     <string name="occupation_hint">
         Occupation (e.g. Software Engineer)
     </string>
-    <string name="i_am_a_student">
-        I am a student
+    <string name="no_occupation_error_message">
+        Please enter in your occupation.
+    </string>
+
+    <string name="years_of_experience_prompt">
+        How many years of professional experience do you have?
+    </string>
+    <string name="no_yoe_error_message">
+        Please enter in your years of experience.
     </string>
 </resources>

@@ -16,9 +16,10 @@ internal class OnboardingFragmentController(
         const val IS_INTERVIEWING_TAG = "IS_INTERVIEWING"
     }
 
-    private var currentState = OnboardingAskState.NONE
+    var currentState = OnboardingAskState.NONE
 
     fun onStateChange(newState: OnboardingAskState) {
+        removeCurrentFragment()
         currentState = newState
 
         when (newState) {
@@ -26,9 +27,10 @@ internal class OnboardingFragmentController(
                 addFragment(OccupationFormFragment.getInstance())
             }
             OnboardingAskState.FIELD_OF_STUDY -> {
+                addFragment(OccupationFormFragment.getInstance())
             }
             OnboardingAskState.YEARS_OF_EXPERIENCE -> {
-
+                addFragment(YearsOfExperienceFragment.getInstance())
             }
             OnboardingAskState.INTERVIEW_STATUS -> {
 
@@ -51,6 +53,17 @@ internal class OnboardingFragmentController(
             OnboardingAskState.YEARS_OF_EXPERIENCE -> YEARS_OF_EXPERIENCE_TAG
             OnboardingAskState.INTERVIEW_STATUS -> IS_INTERVIEWING_TAG
             OnboardingAskState.NONE -> error("No fragment tag for NONE state!")
+        }
+    }
+
+    private fun removeCurrentFragment() {
+        if (currentState == OnboardingAskState.NONE) {
+            return
+        }
+
+        val fragmentToRemove = fragmentManager.findFragmentByTag(getTagForCurrentState())
+        if (fragmentToRemove != null) {
+            fragmentManager.beginTransaction().remove(fragmentToRemove).commit();
         }
     }
 }

@@ -9,25 +9,26 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.taro.aimentor.R
 import com.taro.aimentor.databinding.OccupationFormBinding
+import com.taro.aimentor.databinding.YearsOfExperienceFormBinding
 import com.taro.aimentor.persistence.PreferencesManager
 
-class OccupationFormFragment : Fragment() {
+class YearsOfExperienceFragment : Fragment() {
 
     companion object {
 
-        fun getInstance(): OccupationFormFragment {
-            return OccupationFormFragment()
+        fun getInstance(): YearsOfExperienceFragment {
+            return YearsOfExperienceFragment()
         }
     }
 
-    private var _binding: OccupationFormBinding? = null
+    private var _binding: YearsOfExperienceFormBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.fade)
-        exitTransition = inflater.inflateTransition(android.R.transition.no_transition)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onCreateView(
@@ -35,24 +36,12 @@ class OccupationFormFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = OccupationFormBinding.inflate(inflater, container, false)
+        _binding = YearsOfExperienceFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferencesManager = PreferencesManager.getInstance(view.context)
-        binding.occupationInput.addTextChangedListener {
-            val userOccupation = binding.occupationInput.text.toString()
-            if (userOccupation.isEmpty()) {
-                binding.clearOccupationButton.visibility = View.GONE
-            } else {
-                binding.clearOccupationButton.visibility = View.VISIBLE
-            }
-            preferencesManager.occupation = userOccupation.trim()
-        }
-        binding.clearOccupationButton.setOnClickListener {
-            binding.occupationInput.setText("")
-        }
     }
 }
