@@ -48,4 +48,19 @@
     </string>
     <string name="will_rate">Sure, I\'ll help</string>
     <string name="no_im_good">No, I\'m good</string>
+
+    <string name="initial_ai_priming_message">
+        You are a career coach for a %s.
+    </string>
+    <string name="worker_component">
+        %1$s with %2$s of experience
+    </string>
+    <string name="student_component">
+        student studying %s
+    </string>
+    <string name="x_years">%d years</string>
+    <string name="one_year">1 year</string>
+    <string name="job_searching_addendum">
+        They are currently looking for a job.
+    </string>
 </resources>

@@ -50,7 +50,7 @@ class OnboardingActivity: AppCompatActivity() {
 
             when (questionNumber) {
                 1 -> {
-                    if (preferencesManager.occupation.lowercase() == getString(R.string.student)) {
+                    if (preferencesManager.occupation == getString(R.string.student)) {
                         fragmentController.onStateChange(newState = OnboardingAskState.FIELD_OF_STUDY)
                     } else {
                         fragmentController.onStateChange(newState = OnboardingAskState.YEARS_OF_EXPERIENCE)
@@ -61,6 +61,7 @@ class OnboardingActivity: AppCompatActivity() {
                 }
                 3 -> {
                     startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                 }
             }
 

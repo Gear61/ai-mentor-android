@@ -118,7 +118,9 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
                 binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
             }
 
-            restClient.getChatGPTResponse(conversation = conversationManager.getOnlyCompleteMessages())
+            restClient.getChatGPTResponse(
+                conversation = conversationManager.getOnlyCompleteMessages(context = this)
+            )
         }
     }
 

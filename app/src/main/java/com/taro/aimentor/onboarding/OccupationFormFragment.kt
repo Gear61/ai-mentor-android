@@ -43,7 +43,7 @@ class OccupationFormFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val preferencesManager = PreferencesManager.getInstance(view.context)
         binding.occupationInput.addTextChangedListener {
-            val userOccupation = binding.occupationInput.text.toString()
+            val userOccupation = binding.occupationInput.text.toString().lowercase()
             if (userOccupation.isEmpty()) {
                 binding.clearOccupationButton.visibility = View.GONE
             } else {
