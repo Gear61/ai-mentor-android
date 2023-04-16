@@ -52,6 +52,7 @@ class ConversationManager {
         if (preferencesManager.isInterviewing) {
             systemPromptText = systemPromptText + " " + context.getString(R.string.job_searching_addendum)
         }
+        systemPromptText += context.getString(R.string.focusing_message_for_ai)
         systemMessage.content = systemPromptText
 
         conversationCopy.add(systemMessage)

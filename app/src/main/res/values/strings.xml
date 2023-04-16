@@ -63,4 +63,9 @@
     <string name="job_searching_addendum">
         They are currently looking for a job.
     </string>
+    <string name="focusing_message_for_ai">
+        When giving advice with multiple suggestions, keep it concise and only present the Top 3.
+        If you don\'t have enough information to give specific answers,
+        ask for more context about their situation.
+    </string>
 </resources>
