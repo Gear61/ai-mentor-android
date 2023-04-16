@@ -3,7 +3,7 @@ package com.taro.aimentor.onboarding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
-internal class PersonalizationFragmentController(
+internal class OnboardingFragmentController(
     private val fragmentManager: FragmentManager,
     private val containerId: Int
 ) {
@@ -23,7 +23,7 @@ internal class PersonalizationFragmentController(
 
         when (newState) {
             OnboardingAskState.OCCUPATION -> {
-                // addFragment(UserQuestionsFragment.getInstance())
+                addFragment(OccupationFormFragment.getInstance())
             }
             OnboardingAskState.FIELD_OF_STUDY -> {
             }

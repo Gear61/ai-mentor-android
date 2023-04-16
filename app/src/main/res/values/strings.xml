@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">AI Mentor</string>
+
+    <string name="submit">Submit</string>
+    <string name="x_icon">{gmi-close}</string>
+
     <string name="stop_speaking">Stop speaking</string>
 
     <string name="chat_empty_state_message">

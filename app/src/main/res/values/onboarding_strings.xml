@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="occupation_prompt">
+        What is your occupation?
+    </string>
+    <string name="occupation_hint">
+        Occupation (e.g. Software Engineer)
+    </string>
+    <string name="i_am_a_student">
+        I am a student
+    </string>
+</resources>
