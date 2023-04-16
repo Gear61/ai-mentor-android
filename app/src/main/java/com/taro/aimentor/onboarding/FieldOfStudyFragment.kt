@@ -8,20 +8,20 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.taro.aimentor.R
+import com.taro.aimentor.databinding.FieldOfStudyFormBinding
 import com.taro.aimentor.databinding.OccupationFormBinding
-import com.taro.aimentor.databinding.YearsOfExperienceFormBinding
 import com.taro.aimentor.persistence.PreferencesManager
 
-class YearsOfExperienceFragment : Fragment() {
+class FieldOfStudyFragment : Fragment() {
 
     companion object {
 
-        fun getInstance(): YearsOfExperienceFragment {
-            return YearsOfExperienceFragment()
+        fun getInstance(): FieldOfStudyFragment {
+            return FieldOfStudyFragment()
         }
     }
 
-    private var _binding: YearsOfExperienceFormBinding? = null
+    private var _binding: FieldOfStudyFormBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,16 +36,24 @@ class YearsOfExperienceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = YearsOfExperienceFormBinding.inflate(inflater, container, false)
+        _binding = FieldOfStudyFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferencesManager = PreferencesManager.getInstance(view.context)
-        binding.yearsOfExperienceInput.addTextChangedListener {
-            val userYoe = binding.yearsOfExperienceInput.text.toString().toInt()
-            preferencesManager.yearsOfExperience = userYoe
+        binding.fieldOfStudyInput.addTextChangedListener {
+            val userFieldOfStudy = binding.fieldOfStudyInput.text.toString()
+            if (userFieldOfStudy.isEmpty()) {
+                binding.clearFieldOfStudy.visibility = View.GONE
+            } else {
+                binding.clearFieldOfStudy.visibility = View.VISIBLE
+            }
+            preferencesManager.fieldOfStudy = userFieldOfStudy.trim()
+        }
+        binding.clearFieldOfStudy.setOnClickListener {
+            binding.fieldOfStudyInput.setText("")
         }
     }
 }

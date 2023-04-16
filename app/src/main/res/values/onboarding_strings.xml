@@ -4,6 +4,7 @@
     <string name="occupation_prompt">
         What is your occupation? If you are still in school, put in \"Student\".
     </string>
+    <string name="student">student</string>
     <string name="occupation_hint">
         Occupation (e.g. Software Engineer)
     </string>
@@ -16,5 +17,15 @@
     </string>
     <string name="no_yoe_error_message">
         Please enter in your years of experience.
+    </string>
+
+    <string name="field_of_study_prompt">
+        What is your field of study?
+    </string>
+    <string name="field_of_study_hint">
+        Field of study (e.g. Economics)
+    </string>
+    <string name="no_field_of_study_error_message">
+        Please enter in your field of study.
     </string>
 </resources>

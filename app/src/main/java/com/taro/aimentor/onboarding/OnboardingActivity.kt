@@ -1,9 +1,11 @@
 package com.taro.aimentor.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.R
 import com.taro.aimentor.databinding.OnboardingPageBinding
+import com.taro.aimentor.home.MainActivity
 import com.taro.aimentor.persistence.PreferencesManager
 import com.taro.aimentor.util.UIUtil
 
@@ -17,7 +19,7 @@ class OnboardingActivity: AppCompatActivity() {
     private lateinit var binding: OnboardingPageBinding
     private lateinit var preferencesManager: PreferencesManager
     private lateinit var fragmentController: OnboardingFragmentController
-    private var questionNumber = 1f
+    private var questionNumber = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,7 @@ class OnboardingActivity: AppCompatActivity() {
     }
 
     private fun setProgress() {
-        val progress = (questionNumber / NUM_QUESTIONS) * 100f
+        val progress = (questionNumber.toFloat() / NUM_QUESTIONS) * 100f
         binding.progressBar.setProgressCompat(progress.toInt(), true)
     }
 
@@ -46,9 +48,24 @@ class OnboardingActivity: AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            when (questionNumber) {
+                1 -> {
+                    if (preferencesManager.occupation.lowercase() == getString(R.string.student)) {
+                        fragmentController.onStateChange(newState = OnboardingAskState.FIELD_OF_STUDY)
+                    } else {
+                        fragmentController.onStateChange(newState = OnboardingAskState.YEARS_OF_EXPERIENCE)
+                    }
+                }
+                2 -> {
+                    fragmentController.onStateChange(newState = OnboardingAskState.INTERVIEW_STATUS)
+                }
+                3 -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+            }
+
             questionNumber += 1
             setProgress()
-            fragmentController.onStateChange(newState = OnboardingAskState.YEARS_OF_EXPERIENCE)
         }
     }
 

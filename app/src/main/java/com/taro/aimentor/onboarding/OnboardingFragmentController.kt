@@ -27,7 +27,7 @@ internal class OnboardingFragmentController(
                 addFragment(OccupationFormFragment.getInstance())
             }
             OnboardingAskState.FIELD_OF_STUDY -> {
-                addFragment(OccupationFormFragment.getInstance())
+                addFragment(FieldOfStudyFragment.getInstance())
             }
             OnboardingAskState.YEARS_OF_EXPERIENCE -> {
                 addFragment(YearsOfExperienceFragment.getInstance())

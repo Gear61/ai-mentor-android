@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:ignore="SpUsage, ContentDescription, UnusedAttribute"
+    >
+
+    <TextView
+        android:text="@string/field_of_study_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:textColor="@color/text_title"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        >
+
+        <EditText
+            android:id="@+id/field_of_study_input"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:inputType="textCapWords"
+            android:textSize="15sp"
+            android:textColor="@color/text_normal"
+            android:paddingStart="8dp"
+            android:paddingEnd="44dp"
+            android:hint="@string/field_of_study_hint"
+            android:background="@drawable/rounded_edittext_background"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            />
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/clear_field_of_study"
+            android:text="@string/x_icon"
+            android:visibility="gone"
+            style="@style/text_input_icon"
+            />
+    </FrameLayout>
+</LinearLayout>
