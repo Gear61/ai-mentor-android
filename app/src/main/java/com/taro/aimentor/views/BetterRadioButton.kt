@@ -62,6 +62,13 @@ class BetterRadioButton @JvmOverloads constructor(
             textView.text = text
         }
 
+    fun setCheckedImmediately(checked: Boolean) {
+        UIUtil.setCheckedImmediately(
+            checkableView = radioButton,
+            checked = checked
+        )
+    }
+
     override fun onClick(view: View) {
         if (!radioButton.isChecked) {
             radioButton.isChecked = true

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:ignore="SpUsage, ContentDescription, UnusedAttribute"
+    >
+
+    <TextView
+        android:text="@string/interview_status_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="19sp"
+        android:textColor="@color/text_title"
+        />
+
+    <com.taro.aimentor.views.BetterRadioGroup
+        android:id="@+id/question_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>

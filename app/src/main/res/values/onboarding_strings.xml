@@ -28,4 +28,12 @@
     <string name="no_field_of_study_error_message">
         Please enter in your field of study.
     </string>
+
+    <string name="interview_status_prompt">
+        Are you currently looking for jobs or internships?
+    </string>
+    <string-array name="interview_status_options">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 </resources>

@@ -33,7 +33,7 @@ internal class OnboardingFragmentController(
                 addFragment(YearsOfExperienceFragment.getInstance())
             }
             OnboardingAskState.INTERVIEW_STATUS -> {
-
+                addFragment(InterviewStatusFragment.getInstance())
             }
             OnboardingAskState.NONE -> {}
         }

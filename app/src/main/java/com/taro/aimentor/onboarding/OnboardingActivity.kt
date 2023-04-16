@@ -91,6 +91,16 @@ class OnboardingActivity: AppCompatActivity() {
                 }
                 return true
             }
+            OnboardingAskState.FIELD_OF_STUDY -> {
+                if (preferencesManager.fieldOfStudy.isBlank()) {
+                    UIUtil.showLongToast(
+                        stringId = R.string.no_field_of_study_error_message,
+                        context = this
+                    )
+                    return false
+                }
+                return true
+            }
             else -> return false
         }
     }

@@ -47,7 +47,7 @@ class PreferencesManager private constructor(context: Context) {
         }
 
     var isInterviewing: Boolean
-        get() = prefs.getBoolean(IS_INTERVIEWING, false)
+        get() = prefs.getBoolean(IS_INTERVIEWING, true)
         set(newIsInterviewing) {
             prefs.edit().putBoolean(IS_INTERVIEWING, newIsInterviewing).apply()
         }
