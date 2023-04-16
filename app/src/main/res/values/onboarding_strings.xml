@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="set_your_profile">Set Your Profile</string>
     <string name="occupation_prompt">
-        What is your occupation?
+        What is your occupation? If you are still in school, put in \"Student\".
     </string>
     <string name="occupation_hint">
         Occupation (e.g. Software Engineer)

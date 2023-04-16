@@ -41,7 +41,7 @@ class PreferencesManager private constructor(context: Context) {
         }
 
     var yearsOfExperience: Int
-        get() = prefs.getInt(YEARS_OF_EXPERIENCE, 0)
+        get() = prefs.getInt(YEARS_OF_EXPERIENCE, -1)
         set(newYearsOfExperience) {
             prefs.edit().putInt(YEARS_OF_EXPERIENCE, newYearsOfExperience).apply()
         }

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
-import com.taro.aimentor.R
 import com.taro.aimentor.databinding.OccupationFormBinding
 
 class OccupationFormFragment : Fragment() {
@@ -39,5 +39,16 @@ class OccupationFormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.occupationInput.addTextChangedListener {
+            val userOccupation = binding.occupationInput.text.toString()
+            if (userOccupation.isEmpty()) {
+                binding.clearOccupationButton.visibility = View.GONE
+            } else {
+                binding.clearOccupationButton.visibility = View.VISIBLE
+            }
+        }
+        binding.clearOccupationButton.setOnClickListener {
+            binding.occupationInput.setText("")
+        }
     }
 }

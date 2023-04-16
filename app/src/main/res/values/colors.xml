@@ -21,4 +21,7 @@
     <color name="link_blue">#1976D2</color>
 
     <color name="screen_background">@color/white</color>
+
+    <color name="progress_bar_track_color">#E0E0E0</color>
+    <color name="progress_bar_status_color">#81C784</color>
 </resources>
