@@ -101,7 +101,7 @@ class OnboardingActivity: AppCompatActivity() {
                 }
                 return true
             }
-            else -> return false
+            else -> return true
         }
     }
 }

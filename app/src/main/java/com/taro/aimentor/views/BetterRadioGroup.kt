@@ -10,7 +10,12 @@ class BetterRadioGroup @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs), BetterRadioButton.Listener {
 
+    interface Listener {
+        fun onOptionChosen(index: Int)
+    }
+
     private val radioButtons: MutableList<BetterRadioButton> = ArrayList()
+    private var listener: Listener? = null
 
     init {
         orientation = VERTICAL
@@ -36,15 +41,9 @@ class BetterRadioGroup @JvmOverloads constructor(
         }
     }
 
-    val checkedButton: BetterRadioButton?
-        get() {
-            for (radioButton in radioButtons) {
-                if (radioButton.isChecked) {
-                    return radioButton
-                }
-            }
-            return null
-        }
+    fun setOptionChosenListener(listener: Listener) {
+        this.listener = listener
+    }
 
     fun getRadioButton(index: Int): BetterRadioButton {
         return radioButtons[index]
@@ -56,5 +55,6 @@ class BetterRadioGroup @JvmOverloads constructor(
                 radioButtons[i].isChecked = false
             }
         }
+        listener?.onOptionChosen(index = index)
     }
 }
