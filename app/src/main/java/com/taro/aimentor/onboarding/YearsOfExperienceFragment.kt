@@ -8,7 +8,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.taro.aimentor.R
-import com.taro.aimentor.databinding.OccupationFormBinding
 import com.taro.aimentor.databinding.YearsOfExperienceFormBinding
 import com.taro.aimentor.persistence.PreferencesManager
 

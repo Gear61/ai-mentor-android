@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.taro.aimentor.R
 import com.taro.aimentor.databinding.FieldOfStudyFormBinding
-import com.taro.aimentor.databinding.OccupationFormBinding
 import com.taro.aimentor.persistence.PreferencesManager
 
 class FieldOfStudyFragment : Fragment() {

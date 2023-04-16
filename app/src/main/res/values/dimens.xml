@@ -1,3 +1,6 @@
 <resources>
     <dimen name="markdown_bullet_width">4dp</dimen>
+
+    <dimen name="radio_group_button_spacing">4dp</dimen>
+    <dimen name="radio_button_padding">8dp</dimen>
 </resources>
