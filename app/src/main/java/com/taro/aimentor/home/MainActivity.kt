@@ -61,7 +61,8 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
         restClient = RestClient(listener = this)
         textToSpeechManager = TextToSpeechManager(
             context = this,
-            listener = this
+            listener = this,
+            locale = resources.configuration.locales.get(0)
         )
         textOptionsDialog = TextOptionsDialog(
             context = this,
