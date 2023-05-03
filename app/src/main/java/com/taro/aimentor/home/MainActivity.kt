@@ -25,13 +25,17 @@ import com.taro.aimentor.speech.TextToSpeechManager
 import com.taro.aimentor.util.ClipboardUtil
 import com.taro.aimentor.util.UIUtil
 
-class MainActivity : AppCompatActivity(), RestClient.Listener,
-    ConversationAdapter.Listener, TextToSpeechManager.Listener, TextOptionsDialog.Listener {
+class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
+    TextToSpeechManager.Listener, TextOptionsDialog.Listener,
+    BottomNavigationView.Listener {
+
+    companion object {
+        private const val PREVIOUSLY_SELECTED_PAGE_ID = "previouslySelectedPageId"
+    }
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var conversationManager: ConversationManager
-    private lateinit var conversationAdapter: ConversationAdapter
-    private lateinit var restClient: RestClient
+    private lateinit var navigationController: HomepageFragmentController
+
     private lateinit var textToSpeechManager: TextToSpeechManager
     private lateinit var textOptionsDialog: TextOptionsDialog
 
@@ -57,86 +61,23 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
                 .show()
         }
 
-        conversationManager = ConversationManager()
-        restClient = RestClient(listener = this)
-        textToSpeechManager = TextToSpeechManager(
-            context = this,
-            listener = this,
-            locale = resources.configuration.locales.get(0)
-        )
-        textOptionsDialog = TextOptionsDialog(
-            context = this,
-            listener = this
-        )
-
-        conversationAdapter = ConversationAdapter(listener = this)
-        binding.conversationList.adapter = conversationAdapter
-        bindComposer()
-
-        val rootView = findViewById<View>(android.R.id.content).rootView
-        rootView.viewTreeObserver.addOnGlobalLayoutListener {
-            val keyboardVisible = WindowInsetsCompat
-                .toWindowInsetsCompat(rootView.rootWindowInsets)
-                .isVisible(WindowInsetsCompat.Type.ime())
-
-            // When the keyboard is open, scroll the conversation to the bottom
-            // It looks like you don't get punished for over-scrolling, so using 9001 for the memes
-            if (keyboardVisible) {
-                binding.conversationList.post {
-                    binding.conversationList.smoothScrollBy(0, 9001)
-                }
-            }
-        }
-    }
-
-    private fun bindComposer() {
-        binding.sendMessageButton.setOnClickListener {
-            UIUtil.hideKeyboard(activity = this)
-            if (conversationManager.isChatGPTThinking()) {
-                UIUtil.showLongToast(
-                    stringId = R.string.wait_for_response_error,
-                    context = this
-                )
-                return@setOnClickListener
-            }
-
-            val textInput = binding.messageInput.text.toString().trim()
-            if (textInput.isBlank()) {
-                UIUtil.showLongToast(
-                    stringId = R.string.blank_input_error,
-                    context = this
-                )
-                return@setOnClickListener
-            }
-            conversationManager.onUserMessageSubmitted(textInput = textInput)
-            conversationAdapter.submitList(conversationManager.getAllMessages())
-
-            // Clean up the UI
-            binding.chatEmptyState.visibility = View.GONE
-            binding.messageInput.setText("")
-            binding.commentComposer.requestFocus()
-            binding.conversationList.post {
-                binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
-            }
-
-            restClient.getChatGPTResponse(
-                conversation = conversationManager.getOnlyCompleteMessages(context = this)
+        navigationController = HomepageFragmentController(supportFragmentManager, R.id.container)
+        binding.bottomNavigation.setListener(this)
+        if (savedInstanceState == null) {
+            binding.bottomNavigation.setCurrentlySelected(R.id.chat_button)
+        } else {
+            navigationController.clearFragments()
+            val previousSelectedId = savedInstanceState.getInt(
+                PREVIOUSLY_SELECTED_PAGE_ID,
+                R.id.chat_button
             )
+            navigationController.onNavItemSelected(previousSelectedId)
+            binding.bottomNavigation.setCurrentlySelected(previousSelectedId)
         }
     }
 
-    override fun onResponseFetched(response: String) {
-        conversationManager.onChatGPTResponseReturned(response = response)
-        val updatedConversation = conversationManager.getAllMessages()
-        conversationAdapter.submitList(updatedConversation)
-        conversationAdapter.notifyItemChanged(conversationAdapter.itemCount - 1)
-    }
+    override fun onNavItemSelected(viewId: Int) {
 
-    override fun onResponseFailure() {
-        UIUtil.showLongToast(
-            stringId = R.string.chatgpt_error,
-            context = this
-        )
     }
 
     override fun onMessageClicked(message: ChatMessage) {
@@ -184,7 +125,6 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
     }
 
     override fun finish() {
-        restClient.cleanUp(activity = this)
         textToSpeechManager.shutdown()
         textOptionsDialog.cleanUp()
         super.finish()
@@ -198,12 +138,6 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
             icon = MaterialDesignIconic.Icon.gmi_volume_off,
             context = this
         )
-        UIUtil.loadMenuIcon(
-            menu = menu,
-            itemId = R.id.settings,
-            icon = MaterialDesignIconic.Icon.gmi_settings,
-            context = this
-        )
         return true
     }
 
@@ -211,10 +145,6 @@ class MainActivity : AppCompatActivity(), RestClient.Listener,
         return when (item.itemId) {
             R.id.stop_speaking -> {
                 textToSpeechManager.stopSpeaking()
-                return true
-            }
-            R.id.settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
                 return true
             }
             else -> {

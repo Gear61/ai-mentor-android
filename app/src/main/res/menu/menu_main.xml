@@ -6,12 +6,6 @@
     <item
         android:id="@+id/stop_speaking"
         android:title="@string/stop_speaking"
-        app:showAsAction="ifRoom"
-        />
-
-    <item
-        android:id="@+id/settings"
-        android:title="@string/settings"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         />
 </menu>
