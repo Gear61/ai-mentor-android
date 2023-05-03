@@ -5,19 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.transition.TransitionInflater
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
-import com.taro.aimentor.conversation.TextOptionsDialog
-import com.taro.aimentor.databinding.FieldOfStudyFormBinding
 import com.taro.aimentor.databinding.HomeChatBinding
 import com.taro.aimentor.home.MainActivity
-import com.taro.aimentor.persistence.PreferencesManager
-import com.taro.aimentor.speech.TextToSpeechManager
 import com.taro.aimentor.util.UIUtil
 
 class HomeChatFragment: Fragment(), RestClient.Listener {

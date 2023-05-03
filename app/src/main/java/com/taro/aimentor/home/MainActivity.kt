@@ -6,21 +6,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
-import androidx.core.view.WindowInsetsCompat
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.taro.aimentor.R
-import com.taro.aimentor.api.RestClient
 import com.taro.aimentor.conversation.ConversationAdapter
-import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.conversation.TextOptionsDialog
 import com.taro.aimentor.databinding.ActivityMainBinding
 import com.taro.aimentor.models.ChatMessage
 import com.taro.aimentor.persistence.PreferencesManager
-import com.taro.aimentor.settings.SettingsActivity
 import com.taro.aimentor.speech.TextToSpeechManager
 import com.taro.aimentor.util.ClipboardUtil
 import com.taro.aimentor.util.UIUtil
@@ -140,12 +135,6 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
             PREVIOUSLY_SELECTED_PAGE_ID,
             navigationController.currentViewId
         )
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun startActivityForResult(intent: Intent, requestCode: Int) {
-        super.startActivityForResult(intent, requestCode)
-        overridePendingTransition(R.anim.slide_left_out, R.anim.slide_left_in)
     }
 
     override fun finish() {
