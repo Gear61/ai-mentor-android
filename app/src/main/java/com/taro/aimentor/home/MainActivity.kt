@@ -61,6 +61,16 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
                 .show()
         }
 
+        textToSpeechManager = TextToSpeechManager(
+            context = this,
+            listener = this,
+            locale = resources.configuration.locales.get(0)
+        )
+        textOptionsDialog = TextOptionsDialog(
+            context = this,
+            listener = this
+        )
+
         navigationController = HomepageFragmentController(supportFragmentManager, R.id.container)
         binding.bottomNavigation.setListener(this)
         if (savedInstanceState == null) {
@@ -77,7 +87,13 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
     }
 
     override fun onNavItemSelected(viewId: Int) {
+        UIUtil.hideKeyboard(activity = this)
+        navigationController.onNavItemSelected(viewId)
 
+        when (viewId) {
+            R.id.chat_button -> setTitle(R.string.app_name)
+            R.id.settings_button -> setTitle(R.string.settings)
+        }
     }
 
     override fun onMessageClicked(message: ChatMessage) {
@@ -115,6 +131,14 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
         UIUtil.showLongToast(
             stringId = R.string.tts_failure_message,
             context = this
+        )
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(
+            PREVIOUSLY_SELECTED_PAGE_ID,
+            navigationController.currentViewId
         )
     }
 

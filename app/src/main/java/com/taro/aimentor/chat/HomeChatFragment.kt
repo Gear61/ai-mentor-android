@@ -55,7 +55,7 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
         binding.conversationList.adapter = conversationAdapter
         bindComposer()
 
-        val rootView = view.findViewById<View>(android.R.id.content).rootView
+        val rootView = activity.findViewById<View>(android.R.id.content).rootView
         rootView.viewTreeObserver.addOnGlobalLayoutListener {
             val keyboardVisible = WindowInsetsCompat
                 .toWindowInsetsCompat(rootView.rootWindowInsets)
