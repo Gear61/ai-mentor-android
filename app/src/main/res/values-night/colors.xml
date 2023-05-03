@@ -24,4 +24,8 @@
 
     <color name="progress_bar_track_color">#616161</color>
     <color name="progress_bar_status_color">@color/green</color>
+
+    <color name="bottom_navigation_item_color">#80FFFFFF</color>
+    <color name="bar_shadow_start_color">#C0FFFFFF</color>
+    <color name="bar_shadow_end_color">@android:color/transparent</color>
 </resources>

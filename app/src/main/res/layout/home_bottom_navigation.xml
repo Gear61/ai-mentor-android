@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="SpUsage"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:background="@color/screen_background"
+        >
+
+        <LinearLayout
+            android:id="@+id/chat_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/chat_icon"
+                android:text="@string/chat_icon"
+                style="@style/bottom_navigation_item"
+                />
+
+            <TextView
+                android:id="@+id/chat_text"
+                android:text="@string/chat"
+                style="@style/bottom_navigation_text"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settings_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/settings_icon"
+                android:text="@string/settings_icon"
+                style="@style/bottom_navigation_item"
+                />
+
+            <TextView
+                android:id="@+id/settings_text"
+                android:text="@string/settings"
+                style="@style/bottom_navigation_text"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/toolbar_shadow"
+        />
+</merge>
