@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -19,8 +20,8 @@ android {
         applicationId "com.taro.aimentor"
         minSdk 24
         targetSdk 33
-        versionCode 10
-        versionName "1.0.9"
+        versionCode 11
+        versionName "1.1.0"
         signingConfig signingConfigs.release
     }
 

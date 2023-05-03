@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
     BottomNavigationView.Listener {
 
     companion object {
-        private const val PREVIOUSLY_SELECTED_PAGE_ID = "previouslySelectedPageId"
+        private const val PREVIOUSLY_SELECTED_PAGE_ID = "previously_selected_page_id"
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
         if (savedInstanceState == null) {
             binding.bottomNavigation.setCurrentlySelected(R.id.chat_button)
         } else {
-            navigationController.clearFragments()
+            navigationController.restoreFragments(savedInstanceState = savedInstanceState)
             val previousSelectedId = savedInstanceState.getInt(
                 PREVIOUSLY_SELECTED_PAGE_ID,
                 R.id.chat_button
@@ -135,6 +135,7 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
             PREVIOUSLY_SELECTED_PAGE_ID,
             navigationController.currentViewId
         )
+        navigationController.saveFragments(outState = outState)
     }
 
     override fun finish() {

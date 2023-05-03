@@ -2,9 +2,13 @@ package com.taro.aimentor.conversation
 
 import android.content.Context
 import com.taro.aimentor.R
+import com.taro.aimentor.api.ASSISTANT_ROLE
+import com.taro.aimentor.api.SYSTEM_ROLE
+import com.taro.aimentor.api.USER_ROLE
 import com.taro.aimentor.models.ChatMessage
 import com.taro.aimentor.models.MessageState
 import com.taro.aimentor.models.MessageType
+import com.taro.aimentor.models.ParcelizedChatMessage
 import com.taro.aimentor.persistence.PreferencesManager
 
 /**
@@ -26,12 +30,29 @@ class ConversationManager {
         )
     }
 
+    fun restoreConversation(messageList: List<ParcelizedChatMessage>) {
+        for (message in messageList) {
+            val messageType = when (message.role) {
+                USER_ROLE -> MessageType.USER
+                ASSISTANT_ROLE -> MessageType.ASSISTANT
+                SYSTEM_ROLE -> MessageType.SYSTEM
+                else -> error("Unexpected message type - Role doesn't match!")
+            }
+            messages.add(
+                ChatMessage(
+                    type = messageType,
+                    content = message.content
+                )
+            )
+        }
+    }
+
     fun onChatGPTResponseReturned(response: String) {
         messages.last().onMessageComplete(finalContent = response)
     }
 
-    // For passing to the API
-    fun getOnlyCompleteMessages(context: Context): List<ChatMessage> {
+    // Excludes in-progress messages
+    fun getMessagesForApi(context: Context): List<ChatMessage> {
         val conversationCopy = mutableListOf<ChatMessage>()
 
         val systemMessage = ChatMessage(type = MessageType.SYSTEM)
@@ -60,11 +81,19 @@ class ConversationManager {
         return conversationCopy.filter { it.getState() == MessageState.COMPLETE }
     }
 
-    // For the UI
-    fun getAllMessages(): List<ChatMessage> {
+    // Includes in-progress messages while excluding the system prompt message
+    fun getMessagesForUi(): List<ChatMessage> {
         val conversationCopy = mutableListOf<ChatMessage>()
         conversationCopy.addAll(messages)
-        return conversationCopy
+        return conversationCopy.filter { it.getType() == MessageType.USER || it.getType() == MessageType.ASSISTANT }
+    }
+
+    fun getParcelizedMessageList(): ArrayList<ParcelizedChatMessage> {
+        val messageParcels = ArrayList<ParcelizedChatMessage>()
+        for (message in messages) {
+            messageParcels.add(message.toParcelizedMessage())
+        }
+        return messageParcels
     }
 
     fun isChatGPTThinking(): Boolean {

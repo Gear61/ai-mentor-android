@@ -12,6 +12,7 @@ import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.HomeChatBinding
 import com.taro.aimentor.home.MainActivity
+import com.taro.aimentor.models.ParcelizedChatMessage
 import com.taro.aimentor.util.UIUtil
 
 class HomeChatFragment: Fragment(), RestClient.Listener {
@@ -21,6 +22,8 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
         fun getInstance(): HomeChatFragment {
             return HomeChatFragment()
         }
+
+        private const val CONVERSATION_MESSAGES = "conversation_messages"
     }
 
     private var _binding: HomeChatBinding? = null
@@ -41,13 +44,25 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        conversationManager = ConversationManager()
         restClient = RestClient(listener = this)
 
         val activity = requireActivity() as MainActivity
         conversationAdapter = ConversationAdapter(listener = activity)
+
         binding.conversationList.adapter = conversationAdapter
         bindComposer()
+
+        conversationManager = ConversationManager()
+        if (savedInstanceState != null) {
+            val messageList = savedInstanceState
+                .getParcelableArrayList<ParcelizedChatMessage>(CONVERSATION_MESSAGES) as ArrayList<ParcelizedChatMessage>
+            if (messageList.isEmpty()) {
+                return
+            }
+            binding.chatEmptyState.visibility = View.GONE
+            conversationManager.restoreConversation(messageList = messageList)
+            conversationAdapter.submitList(conversationManager.getMessagesForUi())
+        }
 
         val rootView = activity.findViewById<View>(android.R.id.content).rootView
         rootView.viewTreeObserver.addOnGlobalLayoutListener {
@@ -85,7 +100,7 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
                 return@setOnClickListener
             }
             conversationManager.onUserMessageSubmitted(textInput = textInput)
-            conversationAdapter.submitList(conversationManager.getAllMessages())
+            conversationAdapter.submitList(conversationManager.getMessagesForUi())
 
             // Clean up the UI
             binding.chatEmptyState.visibility = View.GONE
@@ -96,14 +111,14 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
             }
 
             restClient.getChatGPTResponse(
-                conversation = conversationManager.getOnlyCompleteMessages(context = requireActivity())
+                conversation = conversationManager.getMessagesForApi(context = requireActivity())
             )
         }
     }
 
     override fun onResponseFetched(response: String) {
         conversationManager.onChatGPTResponseReturned(response = response)
-        val updatedConversation = conversationManager.getAllMessages()
+        val updatedConversation = conversationManager.getMessagesForUi()
         conversationAdapter.submitList(updatedConversation)
         conversationAdapter.notifyItemChanged(conversationAdapter.itemCount - 1)
     }
@@ -112,6 +127,14 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
         UIUtil.showLongToast(
             stringId = R.string.chatgpt_error,
             context = requireActivity()
+        )
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(
+            CONVERSATION_MESSAGES,
+            conversationManager.getParcelizedMessageList()
         )
     }
 }

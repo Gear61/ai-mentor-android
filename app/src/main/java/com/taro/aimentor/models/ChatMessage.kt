@@ -46,4 +46,11 @@ class ChatMessage(
     fun onMessageComplete(finalContent: String) {
         content = finalContent
     }
+
+    fun toParcelizedMessage(): ParcelizedChatMessage {
+        return ParcelizedChatMessage(
+            role = role,
+            content = content
+        )
+    }
 }
