@@ -25,6 +25,10 @@ class SettingsFragment: Fragment(), SettingsAdapter.Listener {
         fun getInstance(): SettingsFragment {
             return SettingsFragment()
         }
+
+        const val SUPPORT_EMAIL = "alex@jointaro.com"
+        const val DARK_MODE_POSITION = 1
+        const val REPO_URL = "https://github.com/Gear61/ai-mentor-android"
     }
 
     private var _binding: SettingsBinding? = null
@@ -55,7 +59,7 @@ class SettingsFragment: Fragment(), SettingsAdapter.Listener {
         var intent: Intent? = null
         when (position) {
             0 -> {
-                val uriText = "mailto:" + SettingsActivity.SUPPORT_EMAIL + "?subject=" + Uri.encode(getString(R.string.feedback_subject))
+                val uriText = "mailto:" + SUPPORT_EMAIL + "?subject=" + Uri.encode(getString(R.string.feedback_subject))
                 val mailUri = Uri.parse(uriText)
                 val sendIntent = Intent(Intent.ACTION_SENDTO, mailUri)
                 startActivity(Intent.createChooser(sendIntent, getString(R.string.send_email)))
@@ -63,7 +67,7 @@ class SettingsFragment: Fragment(), SettingsAdapter.Listener {
             }
             1-> {
                 val preferencesManager = PreferencesManager.getInstance(requireActivity())
-                val secondCell: View = binding.settingsOptions.getChildAt(SettingsActivity.DARK_MODE_POSITION)
+                val secondCell: View = binding.settingsOptions.getChildAt(DARK_MODE_POSITION)
                 val darkModeToggle = secondCell.findViewById<SwitchCompat>(R.id.toggle)
                 darkModeToggle.isChecked = !darkModeToggle.isChecked
                 val themeMode: Int = if (darkModeToggle.isChecked) ThemeMode.DARK else ThemeMode.LIGHT
@@ -94,7 +98,7 @@ class SettingsFragment: Fragment(), SettingsAdapter.Listener {
                     return
                 }
             }
-            4 -> intent = Intent(Intent.ACTION_VIEW, Uri.parse(SettingsActivity.REPO_URL))
+            4 -> intent = Intent(Intent.ACTION_VIEW, Uri.parse(REPO_URL))
         }
         startActivity(intent)
     }

@@ -38,12 +38,7 @@
 
         <activity
             android:name=".home.MainActivity"
-            android:screenOrientation="portrait"
-            />
-
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:label="@string/settings"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
             />
     </application>

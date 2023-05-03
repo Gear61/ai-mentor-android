@@ -51,7 +51,7 @@ class SettingsAdapter(
         fun loadSetting(position: Int) {
             icon.text = icons[position]
             option.text = options[position]
-            if (position == SettingsActivity.DARK_MODE_POSITION) {
+            if (position == SettingsFragment.DARK_MODE_POSITION) {
                 toggle.visibility = View.VISIBLE
                 val isFollowingSystemTheme = preferencesManager.themeMode == ThemeMode.FOLLOW_SYSTEM
                 val uiMode = toggle.context.resources.configuration.uiMode
