@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import com.taro.aimentor.R
 import com.taro.aimentor.chat.HomeChatFragment
 import com.taro.aimentor.settings.SettingsFragment
+import com.taro.aimentor.talk.HomeTalkFragment
 
 internal class HomepageFragmentController(
     private val fragmentManager: FragmentManager,
@@ -15,10 +16,12 @@ internal class HomepageFragmentController(
 
     companion object {
         private const val HOME_CHAT_FRAGMENT_NAME = "home_chat_fragment"
+        private const val HOME_TALK_FRAGMENT_NAME = "home_talk_fragment"
         private const val SETTINGS_FRAGMENT_NAME = "settings_fragment"
     }
 
     private var homeChatFragment: HomeChatFragment? = null
+    private var homeTalkFragment: HomeTalkFragment? = null
     private var settingsFragment: SettingsFragment? = null
 
     @IdRes
@@ -39,6 +42,12 @@ internal class HomepageFragmentController(
                 addFragment(homeChatFragment)
             } else {
                 showFragment(homeChatFragment!!)
+            }
+            R.id.talk_button -> if (homeTalkFragment == null) {
+                homeTalkFragment = HomeTalkFragment.getInstance()
+                addFragment(homeTalkFragment)
+            } else {
+                showFragment(homeTalkFragment!!)
             }
             R.id.settings_button -> if (settingsFragment == null) {
                 settingsFragment = SettingsFragment.getInstance()
@@ -70,6 +79,9 @@ internal class HomepageFragmentController(
         if (homeChatFragment != null) {
             fragmentManager.putFragment(outState, HOME_CHAT_FRAGMENT_NAME, homeChatFragment!!)
         }
+        if (homeTalkFragment != null) {
+            fragmentManager.putFragment(outState, HOME_TALK_FRAGMENT_NAME, homeTalkFragment!!)
+        }
         if (settingsFragment != null) {
             fragmentManager.putFragment(outState, SETTINGS_FRAGMENT_NAME, settingsFragment!!)
         }
@@ -79,6 +91,11 @@ internal class HomepageFragmentController(
         val savedHomeFragment = fragmentManager.getFragment(savedInstanceState, HOME_CHAT_FRAGMENT_NAME)
         if (savedHomeFragment != null) {
             homeChatFragment = savedHomeFragment as HomeChatFragment
+        }
+
+        val savedTalkFragment = fragmentManager.getFragment(savedInstanceState, HOME_TALK_FRAGMENT_NAME)
+        if (savedTalkFragment != null) {
+            homeTalkFragment = savedTalkFragment as HomeTalkFragment
         }
 
         val savedSettingsFragment = fragmentManager.getFragment(savedInstanceState, SETTINGS_FRAGMENT_NAME)

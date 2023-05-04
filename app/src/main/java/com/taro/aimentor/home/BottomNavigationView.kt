@@ -33,6 +33,9 @@ class BottomNavigationView @JvmOverloads constructor(
         binding.chatButton.setOnClickListener {
             setCurrentlySelected(R.id.chat_button)
         }
+        binding.talkButton.setOnClickListener {
+            setCurrentlySelected(R.id.talk_button)
+        }
         binding.settingsButton.setOnClickListener {
             setCurrentlySelected(R.id.settings_button)
         }
@@ -55,6 +58,11 @@ class BottomNavigationView @JvmOverloads constructor(
                 binding.chatText.setTextColor(selectedItemColor)
                 listener!!.onNavItemSelected(R.id.chat_button)
             }
+            R.id.talk_button -> {
+                binding.talkIcon.setTextColor(selectedItemColor)
+                binding.talkText.setTextColor(selectedItemColor)
+                listener!!.onNavItemSelected(R.id.talk_button)
+            }
             R.id.settings_button -> {
                 binding.settingsIcon.setTextColor(selectedItemColor)
                 binding.settingsText.setTextColor(selectedItemColor)
@@ -68,6 +76,10 @@ class BottomNavigationView @JvmOverloads constructor(
             R.id.chat_button -> {
                 binding.chatIcon.setTextColor(unselectedItemColor)
                 binding.chatText.setTextColor(unselectedItemColor)
+            }
+            R.id.talk_button -> {
+                binding.talkIcon.setTextColor(unselectedItemColor)
+                binding.talkText.setTextColor(unselectedItemColor)
             }
             R.id.settings_button -> {
                 binding.settingsIcon.setTextColor(unselectedItemColor)

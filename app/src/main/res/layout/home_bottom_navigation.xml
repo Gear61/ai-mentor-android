@@ -36,6 +36,29 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/talk_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/talk_icon"
+                android:text="@string/mic_icon"
+                style="@style/bottom_navigation_item"
+                />
+
+            <TextView
+                android:id="@+id/talk_text"
+                android:text="@string/talk"
+                style="@style/bottom_navigation_text"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:id="@+id/settings_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
