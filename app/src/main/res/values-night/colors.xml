@@ -11,6 +11,7 @@
     <color name="white_50_alpha">#80FFFFFF</color>
     <color name="line_divider_color">#E0E0E0</color>
     <color name="dialog_background">#424242</color>
+    <color name="composer_background">#424242</color>
 
     <color name="text_normal">@color/white_80_alpha</color>
     <color name="text_title">@color/white</color>

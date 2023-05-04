@@ -48,24 +48,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingVertical="6dp"
+        android:paddingTop="6dp"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_divider_color"
         />
 
     <LinearLayout
         android:id="@+id/comment_composer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:orientation="horizontal"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:background="@drawable/home_chat_composer_background"
         >
 
         <EditText
@@ -87,13 +83,13 @@
 
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/send_message_button"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="bottom"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:gravity="center"
             android:text="@string/send_icon"
-            android:textSize="44dp"
+            android:textSize="36dp"
             android:textColor="@color/accent_color"
             />
     </LinearLayout>
