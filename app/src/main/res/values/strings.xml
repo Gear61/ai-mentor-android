@@ -8,13 +8,16 @@
 
     <string name="chat_empty_state_message">
         Share your thoughts below and hit {gmi-mail-send}
-        to start talking to ChatGPT!
+        to start chatting with ChatGPT!
     </string>
     <string name="comment_composer_hint">Type in your thoughts here</string>
     <string name="blank_input_error">Your thoughts cannot be blank.</string>
 
     <string name="talk">Talk</string>
     <string name="mic_icon">{gmi-mic}</string>
+    <string name="talk_empty_state_message">
+        Tap the {gmi-mic} button below to start talking to ChatGPT!
+    </string>
 
     <string name="wait_for_response_error">
         Please wait for ChatGPT to respond before sharing more thoughts.

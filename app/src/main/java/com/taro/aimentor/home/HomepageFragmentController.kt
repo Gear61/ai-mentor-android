@@ -33,6 +33,7 @@ internal class HomepageFragmentController(
         }
         when (currentViewId) {
             R.id.chat_button -> hideFragment(homeChatFragment!!)
+            R.id.talk_button -> hideFragment(homeTalkFragment!!)
             R.id.settings_button -> hideFragment(settingsFragment!!)
         }
         currentViewId = viewId
