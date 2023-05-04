@@ -56,6 +56,7 @@ class RestClient(private var listener: Listener) {
 
             override fun onFailure(call: Call<ChatGPTApiResponse>, t: Throwable) {
                 if (!call.isCanceled) {
+                    currentApiCall = null
                     listener.onResponseFailure()
                 }
             }

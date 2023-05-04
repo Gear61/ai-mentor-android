@@ -137,4 +137,9 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
             conversationManager.getParcelizedMessageList()
         )
     }
+
+    override fun onDestroy() {
+        restClient.cleanUp(activity = requireActivity())
+        super.onDestroy()
+    }
 }
