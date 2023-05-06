@@ -72,7 +72,7 @@
             android:gravity="center"
             android:text="@string/mic_icon"
             android:textSize="48dp"
-            android:textColor="@color/text_normal"
+            android:textColor="@color/white"
             android:background="@drawable/green_button"
             />
     </FrameLayout>

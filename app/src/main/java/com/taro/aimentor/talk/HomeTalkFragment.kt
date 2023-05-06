@@ -92,9 +92,9 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
 
         // Clean up the UI
         binding.chatEmptyState.visibility = View.GONE
-        binding.conversationList.post {
+        binding.conversationList.postDelayed({
             binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
-        }
+        }, 250L)
 
         restClient.getChatGPTResponse(
             conversation = conversationManager.getMessagesForApi(context = requireActivity())
