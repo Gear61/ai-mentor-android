@@ -9,7 +9,7 @@ import com.taro.aimentor.R
 import com.taro.aimentor.databinding.SpeechToTextDialogBinding
 
 class SpeechToTextDialog(
-    val activity: Activity,
+    activity: Activity,
     val listener: Listener
 ): DialogInterface.OnDismissListener {
 
@@ -51,14 +51,14 @@ class SpeechToTextDialog(
     }
 
     fun changeUIStateToListening() {
-        binding.voiceIcon.setTextColor(ContextCompat.getColor(activity, R.color.white))
+        binding.voiceIcon.setTextColor(ContextCompat.getColor(dialog.context, R.color.white))
         binding.voiceIcon.setBackgroundResource(R.drawable.green_button)
         binding.message.setText(R.string.chatgpt_speech_prompt)
         binding.tryAgain.visibility = View.GONE
     }
 
     fun changeUIStateToRetry() {
-        binding.voiceIcon.setTextColor(ContextCompat.getColor(activity, R.color.green))
+        binding.voiceIcon.setTextColor(ContextCompat.getColor(dialog.context, R.color.green))
         binding.voiceIcon.setBackgroundResource(R.drawable.red_ring_background)
         binding.message.setText(R.string.did_not_catch_speech)
         binding.tryAgain.visibility = View.VISIBLE
