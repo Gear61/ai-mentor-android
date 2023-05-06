@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navigationController: HomepageFragmentController
-
-    private lateinit var textToSpeechManager: TextToSpeechManager
     private lateinit var textOptionsDialog: TextOptionsDialog
+
+    lateinit var textToSpeechManager: TextToSpeechManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -69,7 +69,7 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
                 context = it.context
             )
             if (hasSpeechPermission) {
-                speechToTextManager.startSpeechToTextFlow()
+                startSpeechToTextFlow()
             } else {
                 PermissionUtil.requestPermission(
                     fragment = this,
@@ -78,6 +78,12 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
                 )
             }
         }
+    }
+
+    private fun startSpeechToTextFlow() {
+        val activity = requireActivity() as MainActivity
+        activity.textToSpeechManager.stopSpeaking()
+        speechToTextManager.startSpeechToTextFlow()
     }
 
     override fun onTextSpoken(spokenText: String) {
@@ -103,7 +109,7 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
     ) {
         if (requestCode == RECORD_AUDIO_PERMISSION_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                speechToTextManager.startSpeechToTextFlow()
+                startSpeechToTextFlow()
             } else {
                 UIUtil.showLongToast(
                     R.string.speech_to_text_permission_denied,
@@ -115,6 +121,9 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
 
     override fun onResponseFetched(response: String) {
         conversationManager.onChatGPTResponseReturned(response = response)
+        val activity = requireActivity() as MainActivity
+        activity.textToSpeechManager.speak(text = response)
+
         val updatedConversation = conversationManager.getMessagesForUi()
         conversationAdapter.submitList(updatedConversation)
         conversationAdapter.notifyItemChanged(conversationAdapter.itemCount - 1)
