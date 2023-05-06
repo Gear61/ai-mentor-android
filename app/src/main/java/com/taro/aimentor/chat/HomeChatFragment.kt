@@ -45,7 +45,6 @@ class HomeChatFragment: Fragment(), RestClient.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         restClient = RestClient(listener = this)
-
         val activity = requireActivity() as MainActivity
         conversationAdapter = ConversationAdapter(listener = activity)
 

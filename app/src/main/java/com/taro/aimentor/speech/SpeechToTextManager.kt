@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import com.taro.aimentor.util.StringUtil
 import java.util.*
 
 class SpeechToTextManager(
@@ -19,7 +20,7 @@ class SpeechToTextManager(
 
     // This is lazily instantiated and is also nulled out when the user dismisses the prompt without speaking
     private var speechRecognizer: SpeechRecognizer? = null
-    private val speechRecognizerIntent: Intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+    private val speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
     private val speechToTextDialog: SpeechToTextDialog
 
     init {
@@ -62,10 +63,13 @@ class SpeechToTextManager(
     override fun onEvent(eventType: Int, params: Bundle) {}
 
     override fun onPartialResults(partialResults: Bundle) {
-        val data: List<String>? =
-            partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+        val data = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
         if (data != null && data.isNotEmpty()) {
-            val latestPartialTranscription = data[data.size - 1]
+            val rawTranscription = data[data.size - 1]
+            val latestPartialTranscription = StringUtil.capitalizeSentences(
+                locale = activity!!.resources.configuration.locales.get(0),
+                input = rawTranscription
+            )
             speechToTextDialog.setMessage(message = latestPartialTranscription)
         }
     }
@@ -73,10 +77,13 @@ class SpeechToTextManager(
     override fun onReadyForSpeech(params: Bundle) {}
 
     override fun onResults(results: Bundle) {
-        val matches: List<String>? =
-            results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+        val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
         if (matches != null && matches.isNotEmpty()) {
-            val finalTranscription = matches[0]
+            val rawTranscription = matches[0]
+            val finalTranscription = StringUtil.capitalizeSentences(
+                locale = activity!!.resources.configuration.locales.get(0),
+                input = rawTranscription
+            )
             speechToTextDialog.setMessage(message = finalTranscription)
             listener.onTextSpoken(finalTranscription)
             speechToTextDialog.dismiss()

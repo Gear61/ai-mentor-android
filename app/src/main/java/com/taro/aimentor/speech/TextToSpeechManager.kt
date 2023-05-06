@@ -17,7 +17,7 @@ import java.util.*
 class TextToSpeechManager(
     context: Context,
     private var listener: Listener?,
-    val locale: Locale
+    locale: Locale
 ) : OnInitListener {
 
     interface Listener {
@@ -34,7 +34,7 @@ class TextToSpeechManager(
 
     init {
         textToSpeech = TextToSpeech(context, this)
-        textToSpeech.language = Locale.getDefault()
+        textToSpeech.language = locale
         audioFocusChangeListener = OnAudioFocusChangeListener { focusChange: Int ->
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS
                 || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT
@@ -64,7 +64,6 @@ class TextToSpeechManager(
 
     fun speak(text: String) {
         if (enabled) {
-            textToSpeech.language = locale
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 requestAudioFocusPostO(text)
             } else {

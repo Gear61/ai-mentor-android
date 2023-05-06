@@ -62,10 +62,11 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
 
     private fun bindSpeechButton() {
         binding.talkingInputButton.setOnClickListener {
-            if (PermissionUtil.isPermissionGranted(
-                    permission = Manifest.permission.RECORD_AUDIO,
-                    context = it.context)
-            ) {
+            val hasSpeechPermission = PermissionUtil.isPermissionGranted(
+                permission = Manifest.permission.RECORD_AUDIO,
+                context = it.context
+            )
+            if (hasSpeechPermission) {
                 speechToTextManager.startSpeechToTextFlow()
             } else {
                 PermissionUtil.requestPermission(
@@ -111,5 +112,10 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
             stringId = R.string.chatgpt_error,
             context = requireActivity()
         )
+    }
+
+    override fun onDestroy() {
+        speechToTextManager.cleanUp()
+        super.onDestroy()
     }
 }
