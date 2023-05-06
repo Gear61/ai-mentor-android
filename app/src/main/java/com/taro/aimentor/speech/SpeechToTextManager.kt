@@ -50,6 +50,7 @@ class SpeechToTextManager(
 
     override fun onBeginningOfSpeech() {}
     override fun onBufferReceived(buffer: ByteArray) {}
+
     override fun onEndOfSpeech() {
         speechRecognizer!!.stopListening()
     }

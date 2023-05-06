@@ -11,9 +11,10 @@ import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.HomeTalkBinding
 import com.taro.aimentor.home.MainActivity
+import com.taro.aimentor.speech.SpeechToTextManager
 import com.taro.aimentor.util.UIUtil
 
-class HomeTalkFragment: Fragment(), RestClient.Listener {
+class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Listener {
 
     companion object {
 
@@ -27,6 +28,7 @@ class HomeTalkFragment: Fragment(), RestClient.Listener {
     private var _binding: HomeTalkBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var speechToTextManager: SpeechToTextManager
     private lateinit var conversationManager: ConversationManager
     private lateinit var conversationAdapter: ConversationAdapter
     private lateinit var restClient: RestClient
@@ -42,14 +44,22 @@ class HomeTalkFragment: Fragment(), RestClient.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        speechToTextManager = SpeechToTextManager(
+            activity = requireActivity(),
+            listener = this
+        )
         restClient = RestClient(listener = this)
 
         val activity = requireActivity() as MainActivity
         conversationAdapter = ConversationAdapter(listener = activity)
 
         binding.talkingInputButton.setOnClickListener {
-
+            speechToTextManager.startSpeechToTextFlow()
         }
+    }
+
+    override fun onTextSpoken(spokenText: String?) {
+
     }
 
     override fun onResponseFetched(response: String) {

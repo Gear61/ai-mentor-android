@@ -15,6 +15,7 @@
         android:id="@+id/voice_icon"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:text="@string/mic_icon"
         android:textSize="40dp"
         android:gravity="center"
         android:padding="16dp"
