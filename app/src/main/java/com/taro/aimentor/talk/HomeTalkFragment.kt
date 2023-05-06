@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
+import com.taro.aimentor.chat.HomeChatFragment
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.HomeTalkBinding
 import com.taro.aimentor.home.MainActivity
+import com.taro.aimentor.models.ParcelizedChatMessage
 import com.taro.aimentor.speech.SpeechToTextManager
 import com.taro.aimentor.util.PermissionUtil
 import com.taro.aimentor.util.UIUtil
@@ -53,11 +55,21 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
             listener = this
         )
         restClient = RestClient(listener = this)
-
-        conversationManager = ConversationManager()
         val activity = requireActivity() as MainActivity
         conversationAdapter = ConversationAdapter(listener = activity)
         binding.conversationList.adapter = conversationAdapter
+
+        conversationManager = ConversationManager()
+        if (savedInstanceState != null) {
+            val messageList = savedInstanceState
+                .getParcelableArrayList<ParcelizedChatMessage>(CONVERSATION_MESSAGES) as ArrayList<ParcelizedChatMessage>
+            if (messageList.isEmpty()) {
+                return
+            }
+            binding.chatEmptyState.visibility = View.GONE
+            conversationManager.restoreConversation(messageList = messageList)
+            conversationAdapter.submitList(conversationManager.getMessagesForUi())
+        }
 
         bindSpeechButton()
     }
@@ -133,6 +145,15 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
         UIUtil.showLongToast(
             stringId = R.string.chatgpt_error,
             context = requireActivity()
+        )
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(
+            CONVERSATION_MESSAGES,
+            conversationManager.getParcelizedMessageList()
         )
     }
 
