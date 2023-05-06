@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.taro.aimentor.R
 import com.taro.aimentor.api.RestClient
-import com.taro.aimentor.chat.HomeChatFragment
 import com.taro.aimentor.conversation.ConversationAdapter
 import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.HomeTalkBinding
