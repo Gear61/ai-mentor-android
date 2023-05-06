@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:clipChildren="false"
     android:background="@color/screen_background"
     tools:ignore="SpUsage"
     >
@@ -51,21 +50,30 @@
         android:layout_weight="1"
         android:paddingTop="6dp"
         android:clipToPadding="false"
+        android:requiresFadingEdge="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
-    <com.mikepenz.iconics.view.IconicsTextView
+    <FrameLayout
         android:id="@+id/talking_input_button"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_margin="12dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:gravity="center"
-        android:text="@string/mic_icon"
-        android:textSize="48dp"
-        android:textColor="@color/text_normal"
-        android:background="@drawable/green_button"
-        android:clipToPadding="false"
-        />
+        android:clipChildren="false"
+        >
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:text="@string/mic_icon"
+            android:textSize="48dp"
+            android:textColor="@color/text_normal"
+            android:background="@drawable/green_button"
+            />
+    </FrameLayout>
 </LinearLayout>

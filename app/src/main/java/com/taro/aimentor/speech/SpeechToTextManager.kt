@@ -15,7 +15,7 @@ class SpeechToTextManager(
 ) : RecognitionListener, SpeechToTextDialog.Listener {
 
     interface Listener {
-        fun onTextSpoken(spokenText: String?)
+        fun onTextSpoken(spokenText: String)
     }
 
     // This is lazily instantiated and is also nulled out when the user dismisses the prompt without speaking

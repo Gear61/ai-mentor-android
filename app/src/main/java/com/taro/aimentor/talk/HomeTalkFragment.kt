@@ -54,8 +54,10 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
         )
         restClient = RestClient(listener = this)
 
+        conversationManager = ConversationManager()
         val activity = requireActivity() as MainActivity
         conversationAdapter = ConversationAdapter(listener = activity)
+        binding.conversationList.adapter = conversationAdapter
 
         bindSpeechButton()
     }
@@ -78,8 +80,19 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
         }
     }
 
-    override fun onTextSpoken(spokenText: String?) {
+    override fun onTextSpoken(spokenText: String) {
+        conversationManager.onUserMessageSubmitted(textInput = spokenText)
+        conversationAdapter.submitList(conversationManager.getMessagesForUi())
 
+        // Clean up the UI
+        binding.chatEmptyState.visibility = View.GONE
+        binding.conversationList.post {
+            binding.conversationList.smoothScrollToPosition(conversationAdapter.itemCount - 1)
+        }
+
+        restClient.getChatGPTResponse(
+            conversation = conversationManager.getMessagesForApi(context = requireActivity())
+        )
     }
 
     @Deprecated("Deprecated in Java")
