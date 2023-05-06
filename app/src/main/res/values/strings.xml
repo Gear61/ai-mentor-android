@@ -24,10 +24,6 @@
     </string>
     <string name="send_icon">{gmi-mail-send}</string>
     <string name="copy_icon">{gmi-copy}</string>
-    <string name="speech_icon">{gmi-volume-up}</string>
-    <string name="tts_failure_message">
-        We were unable to initialize your device\'s Text To Speech engine.
-    </string>
 
     <string name="text_options_dialog_title">Text Options</string>
     <array name="conversation_text_options">

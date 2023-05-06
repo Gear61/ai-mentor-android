@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="speech_icon">{gmi-volume-up}</string>
+    <string name="tts_failure_message">
+        We were unable to initialize your device\'s Text To Speech engine.
+    </string>
+
+    <string name="chatgpt_speech_prompt">Tell AI Mentor what you need help with.</string>
+    <string name="try_again">Try again</string>
+    <string name="did_not_catch_speech">We didn\'t catch what you said, please try again.</string>
+</resources>

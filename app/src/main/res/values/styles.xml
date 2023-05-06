@@ -37,4 +37,9 @@
         <item name="android:textSize">12dp</item>
         <item name="android:textColor">@color/bottom_navigation_item_color</item>
     </style>
+
+    <style name="speech_dialog_animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_through_bottom</item>
+    </style>
 </resources>
