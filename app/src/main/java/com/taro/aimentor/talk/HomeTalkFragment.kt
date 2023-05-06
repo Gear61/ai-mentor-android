@@ -1,5 +1,7 @@
 package com.taro.aimentor.talk
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import com.taro.aimentor.conversation.ConversationManager
 import com.taro.aimentor.databinding.HomeTalkBinding
 import com.taro.aimentor.home.MainActivity
 import com.taro.aimentor.speech.SpeechToTextManager
+import com.taro.aimentor.util.PermissionUtil
 import com.taro.aimentor.util.UIUtil
 
 class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Listener {
@@ -22,6 +25,7 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
             return HomeTalkFragment()
         }
 
+        private const val RECORD_AUDIO_PERMISSION_CODE = 1
         private const val CONVERSATION_MESSAGES = "conversation_messages"
     }
 
@@ -53,13 +57,46 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
         val activity = requireActivity() as MainActivity
         conversationAdapter = ConversationAdapter(listener = activity)
 
+        bindSpeechButton()
+    }
+
+    private fun bindSpeechButton() {
         binding.talkingInputButton.setOnClickListener {
-            speechToTextManager.startSpeechToTextFlow()
+            if (PermissionUtil.isPermissionGranted(
+                    permission = Manifest.permission.RECORD_AUDIO,
+                    context = it.context)
+            ) {
+                speechToTextManager.startSpeechToTextFlow()
+            } else {
+                PermissionUtil.requestPermission(
+                    fragment = this,
+                    permission = Manifest.permission.RECORD_AUDIO,
+                    requestCode = RECORD_AUDIO_PERMISSION_CODE
+                )
+            }
         }
     }
 
     override fun onTextSpoken(spokenText: String?) {
 
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == RECORD_AUDIO_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                speechToTextManager.startSpeechToTextFlow()
+            } else {
+                UIUtil.showLongToast(
+                    R.string.speech_to_text_permission_denied,
+                    requireActivity()
+                )
+            }
+        }
     }
 
     override fun onResponseFetched(response: String) {

@@ -8,4 +8,6 @@
     <string name="chatgpt_speech_prompt">Tell AI Mentor what you need help with.</string>
     <string name="try_again">Try again</string>
     <string name="did_not_catch_speech">We didn\'t catch what you said, please try again.</string>
+
+    <string name="speech_to_text_permission_denied">To convert your speech to text, we need access to your microphone.</string>
 </resources>
