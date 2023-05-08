@@ -8,7 +8,7 @@
 
     <string name="chat_empty_state_message">
         Share your thoughts below and hit {gmi-mail-send}
-        to start chatting with ChatGPT!
+        to start chatting with AI Mentor!
     </string>
     <string name="comment_composer_hint">Type in your thoughts here</string>
     <string name="blank_input_error">Your thoughts cannot be blank.</string>
@@ -16,11 +16,11 @@
     <string name="talk">Talk</string>
     <string name="mic_icon">{gmi-mic}</string>
     <string name="talk_empty_state_message">
-        Tap the {gmi-mic} button below to start talking to ChatGPT!
+        Tap the {gmi-mic} button below to start talking to AI Mentor!
     </string>
 
     <string name="wait_for_response_error">
-        Please wait for ChatGPT to respond before sharing more thoughts.
+        Please wait for AI Mentor to respond before sharing more thoughts.
     </string>
     <string name="send_icon">{gmi-mail-send}</string>
     <string name="copy_icon">{gmi-copy}</string>
@@ -33,10 +33,10 @@
     </array>
 
     <string name="chatgpt_thinking_message">
-        Please wait as ChatGPT is figuring out the best response&#8230;
+        Please wait as AI Mentor is figuring out the best response&#8230;
     </string>
     <string name="chatgpt_error">
-        ChatGPT failed to return a response.
+        AI Mentor failed to return a response.
         Please try again later.
     </string>
 
