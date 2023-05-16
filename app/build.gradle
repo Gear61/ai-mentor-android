@@ -20,8 +20,8 @@ android {
         applicationId "com.taro.aimentor"
         minSdk 24
         targetSdk 33
-        versionCode 14
-        versionName "1.2.1"
+        versionCode 15
+        versionName "1.2.2"
         signingConfig signingConfigs.release
     }
 
