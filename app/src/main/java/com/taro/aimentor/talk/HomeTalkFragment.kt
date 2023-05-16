@@ -92,6 +92,14 @@ class HomeTalkFragment: Fragment(), RestClient.Listener, SpeechToTextManager.Lis
     }
 
     private fun startSpeechToTextFlow() {
+        if (conversationManager.isChatGPTThinking()) {
+            UIUtil.showLongToast(
+                stringId = R.string.wait_for_response_error,
+                context = requireContext()
+            )
+            return
+        }
+
         val activity = requireActivity() as MainActivity
         activity.textToSpeechManager.stopSpeaking()
         speechToTextManager.startSpeechToTextFlow()
