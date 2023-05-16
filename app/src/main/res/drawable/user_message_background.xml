@@ -4,7 +4,7 @@
     android:shape="rectangle"
     >
 
-    <solid android:color="@color/accent_green"/>
+    <solid android:color="@color/user_message_background"/>
 
     <corners android:radius="8dp"/>
 </shape>

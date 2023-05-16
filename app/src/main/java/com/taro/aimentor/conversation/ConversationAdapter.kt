@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -108,6 +109,7 @@ open class ConversationAdapter(
                     }
                     messageText.layoutParams = params
                     messageText.setBackgroundResource(R.drawable.user_message_background)
+                    messageText.setTextColor(ContextCompat.getColor(itemView.context, R.color.text_title))
 
                     val actionButtonParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -129,6 +131,7 @@ open class ConversationAdapter(
                     }
                     messageText.layoutParams = params
                     messageText.setBackgroundResource(R.drawable.assistant_message_background)
+                    messageText.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
                     val actionButtonParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,

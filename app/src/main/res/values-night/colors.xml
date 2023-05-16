@@ -12,13 +12,13 @@
     <color name="line_divider_color">#E0E0E0</color>
     <color name="dialog_background">#424242</color>
     <color name="composer_background">#424242</color>
+    <color name="user_message_background">#424242</color>
 
     <color name="text_normal">@color/white_80_alpha</color>
     <color name="text_title">@color/white</color>
     <color name="text_footer">@color/white_50_alpha</color>
 
     <color name="green">#4CAF50</color>
-    <color name="accent_green">#69F0AE</color>
     <color name="link_blue">#1976D2</color>
     <color name="red">#F44336</color>
 
