@@ -7,6 +7,10 @@
     <string name="submit">Submit</string>
     <string name="x_icon">{gmi-close}</string>
 
+    <string name="copy_link">Copy link</string>
+    <string name="share_link">Share link</string>
+    <string name="link_copied_to_clipboard">Link copied to clipboard.</string>
+
     <string name="stop_speaking">Stop speaking</string>
 
     <string name="chat_empty_state_message">

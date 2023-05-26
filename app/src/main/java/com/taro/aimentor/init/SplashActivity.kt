@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.taro.aimentor.home.MainActivity
 import com.taro.aimentor.onboarding.OnboardingActivity
-import com.taro.aimentor.onboarding.personalization.PersonalizationActivity
 import com.taro.aimentor.persistence.PreferencesManager
 
 class SplashActivity : AppCompatActivity() {

@@ -12,6 +12,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.taro.aimentor.R
+import com.taro.aimentor.common.PRIVACY_POLICY_URL
+import com.taro.aimentor.common.TERMS_AND_CONDITIONS_URL
 import com.taro.aimentor.databinding.OnboardingActivityBinding
 import com.taro.aimentor.home.MainActivity
 import com.taro.aimentor.onboarding.personalization.PersonalizationActivity
@@ -19,6 +21,7 @@ import com.taro.aimentor.persistence.PreferencesManager
 import com.taro.aimentor.util.StringUtil
 import com.taro.aimentor.util.UIUtil
 import com.taro.aimentor.views.ProgressDialog
+import com.taro.aimentor.web.WebActivity
 import java.util.*
 
 class OnboardingActivity : AppCompatActivity(), OnboardingManager.Listener {
@@ -59,7 +62,7 @@ class OnboardingActivity : AppCompatActivity(), OnboardingManager.Listener {
         val termsAndConditionsStart = finalDisclaimerText.indexOf(termsAndConditions)
         val termsAndConditionsSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
-                openWebActivity(termsAndConditions, "TODO: REPLACE ME")
+                openWebActivity(termsAndConditions, TERMS_AND_CONDITIONS_URL)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -77,7 +80,7 @@ class OnboardingActivity : AppCompatActivity(), OnboardingManager.Listener {
         val privacyPolicyStart = finalDisclaimerText.indexOf(privacyPolicy)
         val privacyPolicySpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
-                openWebActivity(privacyPolicy, "TODO: REPLACE ME")
+                openWebActivity(privacyPolicy, PRIVACY_POLICY_URL)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -140,9 +143,9 @@ class OnboardingActivity : AppCompatActivity(), OnboardingManager.Listener {
     }
 
     private fun openWebActivity(title: String, url: String) {
-        /* val intent = Intent(this, WebActivity::class.java)
+        val intent = Intent(this, WebActivity::class.java)
         intent.putExtra(WebActivity.TITLE_KEY, title)
-        intent.putExtra(WebActivity.URL_KEY, url) */
+        intent.putExtra(WebActivity.URL_KEY, url)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.stay)
     }

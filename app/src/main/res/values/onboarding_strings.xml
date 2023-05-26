@@ -24,8 +24,8 @@
         By signing up for AI Mentor, you agree to our %1$s and %2$s.
     </string>
 
-    <string name="eye_icon">{ion-eye}</string>
-    <string name="disabled_eye_icon">{ion-eye-disabled}</string>
+    <string name="eye_icon">{gmi-eye}</string>
+    <string name="disabled_eye_icon">{gmi-eye-off}</string>
 
     <!-- Personalization -->
     <string name="set_your_profile">Set Your Profile</string>
