@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="onboarding_preface">Create a free AI Mentor account</string>
+    <string name="onboarding_preface">Create your free AI Mentor account</string>
 
     <string name="continue_with_google">Continue with Google</string>
     <string name="google_login_fail">
@@ -21,7 +21,7 @@
     <string name="email_address_invalid_error_message">Please enter in a valid email address.</string>
 
     <string name="disclaimer_text">
-        By signing up for Taro, you agree to our %1$s and %2$s.
+        By signing up for AI Mentor, you agree to our %1$s and %2$s.
     </string>
 
     <string name="eye_icon">{ion-eye}</string>

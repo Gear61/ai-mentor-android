@@ -9,6 +9,18 @@
         <item name="android:itemBackground">@color/dialog_background</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/app_core_color</item>
+        <item name="colorPrimaryDark">@color/status_bar_color</item>
+        <item name="colorAccent">@color/accent_color</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:navigationBarColor">@color/navigation_bar_color</item>
+
+        <item name="android:itemTextAppearance">@style/MyActionBar.MenuTextStyle</item>
+        <item name="android:itemBackground">@color/dialog_background</item>
+    </style>
+
     <style name="MyActionBar.MenuTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textColor">@color/text_normal</item>
         <item name="android:textSize">17sp</item>
