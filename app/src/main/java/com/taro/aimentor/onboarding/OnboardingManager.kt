@@ -18,6 +18,7 @@ import com.taro.aimentor.common.EMAIL_KEY
 import com.taro.aimentor.common.USERS_COLLECTION
 import com.taro.aimentor.models.AIMentorUser
 import com.taro.aimentor.persistence.PreferencesManager
+import com.taro.aimentor.util.StringUtil
 
 /**
  * Abstracts away the business logic (non-UI work) for onboarding.
@@ -40,9 +41,7 @@ class OnboardingManager(private var activity: Activity?, private var listener: L
     interface Listener {
         fun onLoginStarted(progressMessageId: Int)
 
-        fun onLoginSuccessful()
-
-        fun onSignUpSuccessful()
+        fun onAuthSuccessful()
 
         fun onLoginFailure(errorMessageResId: Int)
     }
@@ -169,11 +168,15 @@ class OnboardingManager(private var activity: Activity?, private var listener: L
             displayName = preferencesManager.userDisplayName,
             email = preferencesManager.userEmail,
             photoUrl = preferencesManager.userPhotoUrl,
+            occupation = StringUtil.capitalizeWords(input = preferencesManager.occupation),
+            yearsOfExperience = preferencesManager.yearsOfExperience,
+            fieldOfStudy = StringUtil.capitalizeWords(input = preferencesManager.fieldOfStudy),
+            isInterviewing = preferencesManager.isInterviewing
         )
         userDocument
             .set(userObject)
             .addOnSuccessListener {
-                listener.onSignUpSuccessful()
+                listener.onAuthSuccessful()
             }
             .addOnFailureListener {
                 alertOfGenericError()
@@ -193,7 +196,7 @@ class OnboardingManager(private var activity: Activity?, private var listener: L
 
                 preferencesManager.userDisplayName = user.displayName
                 preferencesManager.userPhotoUrl = user.photoUrl
-                listener.onLoginSuccessful()
+                listener.onAuthSuccessful()
             }
             .addOnFailureListener {
                 alertOfGenericError()

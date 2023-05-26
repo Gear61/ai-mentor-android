@@ -154,14 +154,6 @@ class OnboardingActivity : AppCompatActivity(), OnboardingManager.Listener {
         progressDialog.show(progressMessageId)
     }
 
-    override fun onSignUpSuccessful() {
-        progressDialog.dismiss()
-        val intent = Intent(this, PersonalizationActivity::class.java)
-        startActivity(intent)
-        overridePendingTransition(R.anim.fade_in, R.anim.stay)
-        finish()
-    }
-
     private fun openPersonalizationFlow() {
         val intent = Intent(this, PersonalizationActivity::class.java)
         startActivity(intent)
@@ -169,7 +161,7 @@ class OnboardingActivity : AppCompatActivity(), OnboardingManager.Listener {
         finish()
     }
 
-    override fun onLoginSuccessful() {
+    override fun onAuthSuccessful() {
         progressDialog.dismiss()
         if (preferencesManager.occupation.isBlank()) {
             openPersonalizationFlow()

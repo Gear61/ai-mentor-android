@@ -25,6 +25,12 @@ object StringUtil {
         return output.toString()
     }
 
+    fun capitalizeWords(input: String): String {
+        return input
+            .split(' ')
+            .joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
+    }
+
     fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }

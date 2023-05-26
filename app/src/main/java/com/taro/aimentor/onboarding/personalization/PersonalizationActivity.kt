@@ -3,10 +3,14 @@ package com.taro.aimentor.onboarding.personalization
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.taro.aimentor.R
+import com.taro.aimentor.common.*
 import com.taro.aimentor.databinding.OnboardingPageBinding
 import com.taro.aimentor.home.MainActivity
 import com.taro.aimentor.persistence.PreferencesManager
+import com.taro.aimentor.util.StringUtil
 import com.taro.aimentor.util.UIUtil
 
 class PersonalizationActivity: AppCompatActivity() {
@@ -50,7 +54,7 @@ class PersonalizationActivity: AppCompatActivity() {
 
             when (questionNumber) {
                 1 -> {
-                    if (preferencesManager.occupation == getString(R.string.student)) {
+                    if (preferencesManager.occupation.lowercase() == getString(R.string.student)) {
                         fragmentController.onStateChange(newState = PersonalizationAskState.FIELD_OF_STUDY)
                     } else {
                         fragmentController.onStateChange(newState = PersonalizationAskState.YEARS_OF_EXPERIENCE)
@@ -60,6 +64,7 @@ class PersonalizationActivity: AppCompatActivity() {
                     fragmentController.onStateChange(newState = PersonalizationAskState.INTERVIEW_STATUS)
                 }
                 3 -> {
+                    syncCareerInformation()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
@@ -68,6 +73,18 @@ class PersonalizationActivity: AppCompatActivity() {
             questionNumber += 1
             setProgress()
         }
+    }
+
+    private fun syncCareerInformation() {
+        val usersCollection = Firebase.firestore.collection(USERS_COLLECTION)
+        val userDoc = usersCollection.document(preferencesManager.userId)
+        val updates = hashMapOf<String, Any>(
+            OCCUPATION_KEY to StringUtil.capitalizeWords(input = preferencesManager.occupation),
+            YEARS_OF_EXPERIENCE_KEY to preferencesManager.yearsOfExperience,
+            FIELD_OF_STUDY_KEY to StringUtil.capitalizeWords(input = preferencesManager.fieldOfStudy),
+            IS_INTERVIEWING_KEY to preferencesManager.isInterviewing
+        )
+        userDoc.update(updates)
     }
 
     private fun isInputValid(): Boolean {

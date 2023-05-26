@@ -3,10 +3,7 @@ package com.taro.aimentor.persistence
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.taro.aimentor.common.DISPLAY_NAME_KEY
-import com.taro.aimentor.common.EMAIL_KEY
-import com.taro.aimentor.common.PHOTO_URL_KEY
-import com.taro.aimentor.common.USER_ID_KEY
+import com.taro.aimentor.common.*
 import com.taro.aimentor.theme.ThemeMode
 import com.taro.aimentor.util.SingletonHolder
 
@@ -16,10 +13,6 @@ class PreferencesManager private constructor(context: Context) {
 
         const val THEME_MODE_KEY = "theme_mode"
         const val NUM_APP_OPENS_KEY = "num_app_opens"
-        const val OCCUPATION_KEY = "occupation"
-        const val YEARS_OF_EXPERIENCE_KEY = "years_of_experience"
-        const val FIELD_OF_STUDY_KEY = "field_of_study"
-        const val IS_INTERVIEWING_KEY = "is_interviewing"
 
         const val APP_OPENS_FOR_RATING_UPSELL = 5
     }
