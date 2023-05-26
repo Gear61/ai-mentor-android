@@ -196,6 +196,10 @@ class OnboardingManager(private var activity: Activity?, private var listener: L
 
                 preferencesManager.userDisplayName = user.displayName
                 preferencesManager.userPhotoUrl = user.photoUrl
+                preferencesManager.occupation = user.occupation
+                preferencesManager.yearsOfExperience = user.yearsOfExperience
+                preferencesManager.fieldOfStudy = user.fieldOfStudy
+                preferencesManager.isInterviewing = user.isInterviewing
                 listener.onAuthSuccessful()
             }
             .addOnFailureListener {

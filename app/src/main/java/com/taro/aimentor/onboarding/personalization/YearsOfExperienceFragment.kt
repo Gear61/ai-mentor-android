@@ -43,6 +43,11 @@ class YearsOfExperienceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val preferencesManager = PreferencesManager.getInstance(view.context)
         binding.yearsOfExperienceInput.addTextChangedListener {
+            val yoeInput = binding.yearsOfExperienceInput.text.toString()
+            if (yoeInput.isBlank()) {
+                return@addTextChangedListener
+            }
+
             val userYoe = binding.yearsOfExperienceInput.text.toString().toInt()
             preferencesManager.yearsOfExperience = userYoe
         }
