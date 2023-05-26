@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="onboarding_preface">Create a free AI Mentor account</string>
+
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="google_login_fail">
+        We failed to log you in with Google.
+        Please try again later.
+    </string>
+    <string name="logging_in_google">Logging you in with Google&#8230;</string>
+
+    <string name="or">or</string>
+    <string name="email_address_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="continue_with_email">Continue with email</string>
+    <string name="logging_in_email">Logging you in with email&#8230;</string>
+    <string name="email_login_fail">
+        Please double-check your email/password and try again.
+    </string>
+    <string name="blank_password_error_message">Please enter in a password.</string>
+    <string name="email_address_invalid_error_message">Please enter in a valid email address.</string>
+
+    <string name="disclaimer_text">
+        By signing up for Taro, you agree to our %1$s and %2$s.
+    </string>
+
+    <string name="eye_icon">{ion-eye}</string>
+    <string name="disabled_eye_icon">{ion-eye-disabled}</string>
+
+    <!-- Personalization -->
     <string name="set_your_profile">Set Your Profile</string>
     <string name="occupation_prompt">
         What is your occupation? If you are still in school, put in \"Student\".

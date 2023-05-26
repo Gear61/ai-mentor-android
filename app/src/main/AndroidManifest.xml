@@ -39,7 +39,7 @@
         </activity>
 
         <activity
-            android:name=".onboarding.OnboardingActivity"
+            android:name=".onboarding.personalization.PersonalizationActivity"
             android:label="@string/set_your_profile"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"

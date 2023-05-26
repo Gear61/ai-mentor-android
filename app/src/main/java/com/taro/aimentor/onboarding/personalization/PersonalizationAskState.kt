@@ -1,6 +1,6 @@
-package com.taro.aimentor.onboarding
+package com.taro.aimentor.onboarding.personalization
 
-enum class OnboardingAskState {
+enum class PersonalizationAskState {
 
     OCCUPATION,
     FIELD_OF_STUDY,

@@ -1,9 +1,9 @@
-package com.taro.aimentor.onboarding
+package com.taro.aimentor.onboarding.personalization
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
-internal class OnboardingFragmentController(
+internal class PersonalizationFragmentController(
     private val fragmentManager: FragmentManager,
     private val containerId: Int
 ) {
@@ -16,26 +16,26 @@ internal class OnboardingFragmentController(
         const val IS_INTERVIEWING_TAG = "IS_INTERVIEWING"
     }
 
-    var currentState = OnboardingAskState.NONE
+    var currentState = PersonalizationAskState.NONE
 
-    fun onStateChange(newState: OnboardingAskState) {
+    fun onStateChange(newState: PersonalizationAskState) {
         removeCurrentFragment()
         currentState = newState
 
         when (newState) {
-            OnboardingAskState.OCCUPATION -> {
+            PersonalizationAskState.OCCUPATION -> {
                 addFragment(OccupationFormFragment.getInstance())
             }
-            OnboardingAskState.FIELD_OF_STUDY -> {
+            PersonalizationAskState.FIELD_OF_STUDY -> {
                 addFragment(FieldOfStudyFragment.getInstance())
             }
-            OnboardingAskState.YEARS_OF_EXPERIENCE -> {
+            PersonalizationAskState.YEARS_OF_EXPERIENCE -> {
                 addFragment(YearsOfExperienceFragment.getInstance())
             }
-            OnboardingAskState.INTERVIEW_STATUS -> {
+            PersonalizationAskState.INTERVIEW_STATUS -> {
                 addFragment(InterviewStatusFragment.getInstance())
             }
-            OnboardingAskState.NONE -> {}
+            PersonalizationAskState.NONE -> {}
         }
     }
 
@@ -48,16 +48,16 @@ internal class OnboardingFragmentController(
 
     private fun getTagForCurrentState(): String {
         return when (currentState) {
-            OnboardingAskState.OCCUPATION -> OCCUPATION_TAG
-            OnboardingAskState.FIELD_OF_STUDY -> FIELD_OF_STUDY_TAG
-            OnboardingAskState.YEARS_OF_EXPERIENCE -> YEARS_OF_EXPERIENCE_TAG
-            OnboardingAskState.INTERVIEW_STATUS -> IS_INTERVIEWING_TAG
-            OnboardingAskState.NONE -> error("No fragment tag for NONE state!")
+            PersonalizationAskState.OCCUPATION -> OCCUPATION_TAG
+            PersonalizationAskState.FIELD_OF_STUDY -> FIELD_OF_STUDY_TAG
+            PersonalizationAskState.YEARS_OF_EXPERIENCE -> YEARS_OF_EXPERIENCE_TAG
+            PersonalizationAskState.INTERVIEW_STATUS -> IS_INTERVIEWING_TAG
+            PersonalizationAskState.NONE -> error("No fragment tag for NONE state!")
         }
     }
 
     private fun removeCurrentFragment() {
-        if (currentState == OnboardingAskState.NONE) {
+        if (currentState == PersonalizationAskState.NONE) {
             return
         }
 

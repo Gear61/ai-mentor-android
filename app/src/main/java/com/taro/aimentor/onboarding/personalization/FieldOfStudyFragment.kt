@@ -1,4 +1,4 @@
-package com.taro.aimentor.onboarding
+package com.taro.aimentor.onboarding.personalization
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,19 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.taro.aimentor.R
-import com.taro.aimentor.databinding.OccupationFormBinding
+import com.taro.aimentor.databinding.FieldOfStudyFormBinding
 import com.taro.aimentor.persistence.PreferencesManager
 
-class OccupationFormFragment : Fragment() {
+class FieldOfStudyFragment : Fragment() {
 
     companion object {
 
-        fun getInstance(): OccupationFormFragment {
-            return OccupationFormFragment()
+        fun getInstance(): FieldOfStudyFragment {
+            return FieldOfStudyFragment()
         }
     }
 
-    private var _binding: OccupationFormBinding? = null
+    private var _binding: FieldOfStudyFormBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,24 +35,24 @@ class OccupationFormFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = OccupationFormBinding.inflate(inflater, container, false)
+        _binding = FieldOfStudyFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferencesManager = PreferencesManager.getInstance(view.context)
-        binding.occupationInput.addTextChangedListener {
-            val userOccupation = binding.occupationInput.text.toString().lowercase()
-            if (userOccupation.isEmpty()) {
-                binding.clearOccupationButton.visibility = View.GONE
+        binding.fieldOfStudyInput.addTextChangedListener {
+            val userFieldOfStudy = binding.fieldOfStudyInput.text.toString()
+            if (userFieldOfStudy.isEmpty()) {
+                binding.clearFieldOfStudy.visibility = View.GONE
             } else {
-                binding.clearOccupationButton.visibility = View.VISIBLE
+                binding.clearFieldOfStudy.visibility = View.VISIBLE
             }
-            preferencesManager.occupation = userOccupation.trim()
+            preferencesManager.fieldOfStudy = userFieldOfStudy.trim()
         }
-        binding.clearOccupationButton.setOnClickListener {
-            binding.occupationInput.setText("")
+        binding.clearFieldOfStudy.setOnClickListener {
+            binding.fieldOfStudyInput.setText("")
         }
     }
 }

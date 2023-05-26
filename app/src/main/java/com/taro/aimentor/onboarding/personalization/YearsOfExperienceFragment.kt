@@ -1,4 +1,4 @@
-package com.taro.aimentor.onboarding
+package com.taro.aimentor.onboarding.personalization
 
 import android.os.Bundle
 import android.view.LayoutInflater

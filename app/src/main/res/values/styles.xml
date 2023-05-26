@@ -13,6 +13,10 @@
         <item name="android:background">@color/green</item>
     </style>
 
+    <style name="rounded_button" parent="button">
+        <item name="android:background">@drawable/rounded_button_background</item>
+    </style>
+
     <style name="text_input_icon">
         <item name="android:layout_width">44dp</item>
         <item name="android:layout_height">44dp</item>
