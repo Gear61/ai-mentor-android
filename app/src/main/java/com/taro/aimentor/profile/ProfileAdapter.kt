@@ -157,8 +157,8 @@ open class ProfileAdapter(
     }
 
     inner class SettingsItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val settingsText: TextView = itemView.findViewById(R.id.settings_text)
-        private val settingsIcon: TextView = itemView.findViewById(R.id.settings_icon)
+        private val settingsText: TextView = itemView.findViewById(R.id.profile_text)
+        private val settingsIcon: TextView = itemView.findViewById(R.id.profile_icon)
 
         fun bind(position: Int) {
             val item = listItems[position]

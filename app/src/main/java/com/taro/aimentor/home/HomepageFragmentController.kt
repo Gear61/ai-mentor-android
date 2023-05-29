@@ -34,7 +34,7 @@ internal class HomepageFragmentController(
         when (currentViewId) {
             R.id.chat_button -> hideFragment(homeChatFragment!!)
             R.id.talk_button -> hideFragment(homeTalkFragment!!)
-            R.id.settings_button -> hideFragment(profileFragment!!)
+            R.id.profile_button -> hideFragment(profileFragment!!)
         }
         currentViewId = viewId
         when (viewId) {
@@ -50,7 +50,7 @@ internal class HomepageFragmentController(
             } else {
                 showFragment(homeTalkFragment!!)
             }
-            R.id.settings_button -> if (profileFragment == null) {
+            R.id.profile_button -> if (profileFragment == null) {
                 profileFragment = ProfileFragment.getInstance()
                 addFragment(profileFragment)
             } else {

@@ -44,7 +44,7 @@ class SettingsAdapter(
     }
 
     inner class SettingViewHolder(private val rootView: View) : RecyclerView.ViewHolder(rootView) {
-        private var icon: TextView = rootView.findViewById(R.id.settings_icon)
+        private var icon: TextView = rootView.findViewById(R.id.profile_icon)
         private var option: TextView = rootView.findViewById(R.id.settings_option)
         private var toggle: SwitchCompat = rootView.findViewById(R.id.toggle)
 

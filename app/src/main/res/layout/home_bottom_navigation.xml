@@ -59,7 +59,7 @@
 
 
         <LinearLayout
-            android:id="@+id/settings_button"
+            android:id="@+id/profile_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -68,14 +68,14 @@
             >
 
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/settings_icon"
-                android:text="@string/settings_icon"
+                android:id="@+id/profile_icon"
+                android:text="@string/profile_icon"
                 style="@style/bottom_navigation_item"
                 />
 
             <TextView
-                android:id="@+id/settings_text"
-                android:text="@string/settings"
+                android:id="@+id/profile_text"
+                android:text="@string/profile"
                 style="@style/bottom_navigation_text"
                 />
         </LinearLayout>

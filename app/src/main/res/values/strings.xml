@@ -81,5 +81,6 @@
 
     <string name="chat">Chat</string>
     <string name="chat_icon">{gmi-comments}</string>
+    <string name="profile_icon">{gmi-account-circle}</string>
     <string name="settings_icon">{gmi-settings}</string>
 </resources>

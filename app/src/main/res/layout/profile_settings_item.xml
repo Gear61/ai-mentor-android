@@ -19,7 +19,7 @@
         >
 
         <com.mikepenz.iconics.view.IconicsTextView
-            android:id="@+id/settings_icon"
+            android:id="@+id/profile_icon"
             android:gravity="center"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -29,7 +29,7 @@
             />
 
         <TextView
-            android:id="@+id/settings_text"
+            android:id="@+id/profile_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

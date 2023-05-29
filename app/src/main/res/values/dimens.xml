@@ -6,5 +6,4 @@
 
     <dimen name="settings_item_height">56dp</dimen>
     <dimen name="settings_icon_size">24dp</dimen>
-    <dimen name="dark_mode_icon_size">40dp</dimen>
 </resources>

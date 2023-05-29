@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), ConversationAdapter.Listener,
         when (viewId) {
             R.id.chat_button -> setTitle(R.string.app_name)
             R.id.talk_button -> setTitle(R.string.app_name)
-            R.id.settings_button -> setTitle(R.string.settings)
+            R.id.profile_button -> setTitle(R.string.profile)
         }
     }
 

@@ -36,8 +36,8 @@ class BottomNavigationView @JvmOverloads constructor(
         binding.talkButton.setOnClickListener {
             setCurrentlySelected(R.id.talk_button)
         }
-        binding.settingsButton.setOnClickListener {
-            setCurrentlySelected(R.id.settings_button)
+        binding.profileButton.setOnClickListener {
+            setCurrentlySelected(R.id.profile_button)
         }
     }
 
@@ -63,10 +63,10 @@ class BottomNavigationView @JvmOverloads constructor(
                 binding.talkText.setTextColor(selectedItemColor)
                 listener!!.onNavItemSelected(R.id.talk_button)
             }
-            R.id.settings_button -> {
-                binding.settingsIcon.setTextColor(selectedItemColor)
-                binding.settingsText.setTextColor(selectedItemColor)
-                listener!!.onNavItemSelected(R.id.settings_button)
+            R.id.profile_button -> {
+                binding.profileIcon.setTextColor(selectedItemColor)
+                binding.profileText.setTextColor(selectedItemColor)
+                listener!!.onNavItemSelected(R.id.profile_button)
             }
         }
     }
@@ -81,9 +81,9 @@ class BottomNavigationView @JvmOverloads constructor(
                 binding.talkIcon.setTextColor(unselectedItemColor)
                 binding.talkText.setTextColor(unselectedItemColor)
             }
-            R.id.settings_button -> {
-                binding.settingsIcon.setTextColor(unselectedItemColor)
-                binding.settingsText.setTextColor(unselectedItemColor)
+            R.id.profile_button -> {
+                binding.profileIcon.setTextColor(unselectedItemColor)
+                binding.profileText.setTextColor(unselectedItemColor)
             }
         }
     }

@@ -24,7 +24,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:textColor="@color/text_normal"
-            android:textSize="@dimen/dark_mode_icon_size"
+            android:textSize="@dimen/settings_icon_size"
             android:text="@string/dark_mode_icon"
             />
 
