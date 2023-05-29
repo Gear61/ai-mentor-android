@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:orientation="vertical"
+    android:foreground="?android:attr/selectableItemBackground"
+    tools:ignore="SpUsage"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/settings_item_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"
+        >
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/settings_icon"
+            android:gravity="center"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:textColor="@color/text_normal"
+            android:textSize="@dimen/settings_icon_size"
+            android:text="@string/dark_mode_icon"
+            />
+
+        <TextView
+            android:id="@+id/settings_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:textColor="@color/text_normal"
+            android:text="@string/dark_mode"
+            />
+    </LinearLayout>
+
+    <View style="@style/divider"/>
+</LinearLayout>

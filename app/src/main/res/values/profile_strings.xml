@@ -23,15 +23,33 @@
     <string name="email_icon">{gmi-email}</string>
     <string name="dark_mode_icon">{gmi-brightness-6}</string>
     <string name="share_icon">{gmi-share}</string>
-    <string name="rate_icon">{gmi-thumb-up}</string>
+    <string name="like_icon">{gmi-thumb-up}</string>
     <string name="github_icon">{gmi-github}</string>
+    <string name="document_icon">{gmi-file-text}</string>
+    <string name="info_icon">{gmi-info}</string>
+    <string name="log_out_icon">{gmi-square-right}</string>
     <array name="settings_icons">
         <item>@string/email_icon</item>
         <item>@string/dark_mode_icon</item>
         <item>@string/share_icon</item>
-        <item>@string/rate_icon</item>
+        <item>@string/like_icon</item>
         <item>@string/github_icon</item>
     </array>
+
+    <string name="click_to_set_name">Click here to set your name</string>
+    <string name="set_name_prompt">What is your name?</string>
+    <string name="set_name_hint">Name</string>
+    <string name="save">Save</string>
+
+    <string name="support">Support</string>
+    <string name="legal">Legal</string>
+
+    <string name="terms_and_conditions_settings">Terms and conditions</string>
+    <string name="privacy_policy_settings">Privacy policy</string>
+
+    <string name="other">Other</string>
+    <string name="app_version_text">App version: %s</string>
+    <string name="log_out">Log out</string>
 
     <string name="share_app_message">
         Hey! I think you\'ll enjoy AI Mentor, a clean and completely free app to talk with an AI chat bot,

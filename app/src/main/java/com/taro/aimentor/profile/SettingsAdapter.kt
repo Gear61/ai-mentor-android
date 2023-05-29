@@ -1,4 +1,4 @@
-package com.taro.aimentor.settings
+package com.taro.aimentor.profile
 
 import android.content.res.Configuration
 import android.content.res.Resources

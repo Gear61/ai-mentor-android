@@ -61,6 +61,7 @@ class OnboardingManager(private var activity: Activity?, private var listener: L
                 .requestProfile()
                 .build()
         googleSignInClient = GoogleSignIn.getClient(activity!!, googleSignInOptions)
+        googleSignInClient.revokeAccess()
     }
 
     fun loginWithGoogle() {

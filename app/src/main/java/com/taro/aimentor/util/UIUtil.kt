@@ -46,15 +46,15 @@ object UIUtil {
     }
 
     fun showShortToast(
-        @StringRes stringId:
-        Int, context: Context
+        @StringRes stringId: Int,
+        context: Context
     ) {
         showToast(stringId, Toast.LENGTH_SHORT, context)
     }
 
     fun showLongToast(
-        @StringRes stringId:
-        Int, context: Context
+        @StringRes stringId: Int,
+        context: Context
     ) {
         showToast(stringId, Toast.LENGTH_LONG, context)
     }

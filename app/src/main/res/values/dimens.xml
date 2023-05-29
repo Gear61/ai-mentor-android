@@ -3,4 +3,8 @@
 
     <dimen name="radio_group_button_spacing">4dp</dimen>
     <dimen name="radio_button_padding">8dp</dimen>
+
+    <dimen name="settings_item_height">56dp</dimen>
+    <dimen name="settings_icon_size">24dp</dimen>
+    <dimen name="dark_mode_icon_size">40dp</dimen>
 </resources>

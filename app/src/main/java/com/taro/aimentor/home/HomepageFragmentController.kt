@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.taro.aimentor.R
 import com.taro.aimentor.chat.HomeChatFragment
-import com.taro.aimentor.settings.SettingsFragment
+import com.taro.aimentor.profile.SettingsFragment
 import com.taro.aimentor.talk.HomeTalkFragment
 
 internal class HomepageFragmentController(

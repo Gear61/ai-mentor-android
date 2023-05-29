@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    >
+
+    <EditText
+        android:id="@+id/display_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:hint="@string/set_name_hint"
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords"
+        android:singleLine="true"
+        android:textColor="@color/text_normal"
+        android:textSize="15sp"
+        android:autofillHints="name"
+        />
+</FrameLayout>
