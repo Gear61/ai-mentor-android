@@ -6,8 +6,8 @@ import com.taro.aimentor.BuildConfig
 import com.taro.aimentor.R
 import com.taro.aimentor.models.AIMentorUser
 import com.taro.aimentor.persistence.PreferencesManager
-import com.taro.aimentor.profile.ProfileItem.Type.*
 import com.taro.aimentor.profile.ProfileItem.ClickActionType.*
+import com.taro.aimentor.profile.ProfileItem.Type.*
 import com.taro.aimentor.theme.ThemeMode
 
 object ProfileDataModel {

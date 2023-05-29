@@ -8,13 +8,6 @@
     <string name="share_this_app">Share this app</string>
     <string name="rate_this_app">Rate this app</string>
     <string name="source_code">Source code</string>
-    <array name="settings_options">
-        <item>@string/send_feedback</item>
-        <item>@string/dark_mode</item>
-        <item>@string/share_this_app</item>
-        <item>@string/rate_this_app</item>
-        <item>@string/source_code</item>
-    </array>
 
     <string name="play_store_error">Unable to open the Play Store.</string>
     <string name="feedback_subject">AI Mentor Feedback</string>
@@ -29,13 +22,6 @@
     <string name="document_icon">{gmi-file-text}</string>
     <string name="info_icon">{gmi-info}</string>
     <string name="log_out_icon">{gmi-square-right}</string>
-    <array name="settings_icons">
-        <item>@string/email_icon</item>
-        <item>@string/dark_mode_icon</item>
-        <item>@string/share_icon</item>
-        <item>@string/like_icon</item>
-        <item>@string/github_icon</item>
-    </array>
 
     <string name="click_to_set_name">Click here to set your name</string>
     <string name="set_name_prompt">What is your name?</string>
