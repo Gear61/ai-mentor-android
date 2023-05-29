@@ -3,6 +3,8 @@ package com.taro.aimentor.persistence
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.taro.aimentor.common.*
 import com.taro.aimentor.theme.ThemeMode
 import com.taro.aimentor.util.SingletonHolder
@@ -72,6 +74,14 @@ class PreferencesManager private constructor(context: Context) {
         set(newUserEmail) {
             prefs.edit().putString(EMAIL_KEY, newUserEmail).apply()
         }
+
+    fun onDisplayNameChanged(newName: String) {
+        userDisplayName = newName
+
+        val usersCollection = Firebase.firestore.collection(USERS_COLLECTION)
+        val userDoc = usersCollection.document(userId)
+        userDoc.update(DISPLAY_NAME_KEY, newName)
+    }
 
     fun logAppOpenAndCheckForRatingUpsell(): Boolean {
         val currentAppOpens = prefs.getInt(NUM_APP_OPENS_KEY, 0) + 1

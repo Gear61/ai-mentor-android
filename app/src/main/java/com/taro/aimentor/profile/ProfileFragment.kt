@@ -70,7 +70,7 @@ class ProfileFragment: Fragment(), ProfileAdapter.Listener, SetDisplayNameDialog
     }
 
     override fun onNewNameSubmitted(newName: String) {
-        // preferencesManager.onDisplayNameChanged(newName = newName)
+        preferencesManager.onDisplayNameChanged(newName = newName)
         adapter.onDisplayNameChanged(newName = newName)
     }
 
