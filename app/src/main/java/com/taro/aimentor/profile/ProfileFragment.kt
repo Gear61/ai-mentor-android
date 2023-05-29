@@ -139,7 +139,7 @@ class ProfileFragment: Fragment(), ProfileAdapter.Listener, SetDisplayNameDialog
     }
 
     private fun logOut() {
-        // preferencesManager.logOut()
+        preferencesManager.logOut()
 
         val loginIntent = Intent(requireActivity(), OnboardingActivity::class.java)
         loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

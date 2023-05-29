@@ -3,6 +3,7 @@ package com.taro.aimentor.persistence
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.taro.aimentor.common.*
@@ -87,5 +88,17 @@ class PreferencesManager private constructor(context: Context) {
         val currentAppOpens = prefs.getInt(NUM_APP_OPENS_KEY, 0) + 1
         prefs.edit().putInt(NUM_APP_OPENS_KEY, currentAppOpens).apply()
         return currentAppOpens == APP_OPENS_FOR_RATING_UPSELL
+    }
+
+    fun logOut() {
+        FirebaseAuth.getInstance().signOut()
+        userId = ""
+        userDisplayName = ""
+        userEmail = ""
+        userPhotoUrl = ""
+        occupation = ""
+        yearsOfExperience = -1
+        fieldOfStudy = ""
+        isInterviewing = true
     }
 }
