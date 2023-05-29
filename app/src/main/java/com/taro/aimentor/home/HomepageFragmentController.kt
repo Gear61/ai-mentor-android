@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.taro.aimentor.R
 import com.taro.aimentor.chat.HomeChatFragment
-import com.taro.aimentor.profile.SettingsFragment
+import com.taro.aimentor.profile.ProfileFragment
 import com.taro.aimentor.talk.HomeTalkFragment
 
 internal class HomepageFragmentController(
@@ -17,12 +17,12 @@ internal class HomepageFragmentController(
     companion object {
         private const val HOME_CHAT_FRAGMENT_NAME = "home_chat_fragment"
         private const val HOME_TALK_FRAGMENT_NAME = "home_talk_fragment"
-        private const val SETTINGS_FRAGMENT_NAME = "settings_fragment"
+        private const val PROFILE_FRAGMENT_NAME = "profile_fragment"
     }
 
     private var homeChatFragment: HomeChatFragment? = null
     private var homeTalkFragment: HomeTalkFragment? = null
-    private var settingsFragment: SettingsFragment? = null
+    private var profileFragment: ProfileFragment? = null
 
     @IdRes
     var currentViewId = 0
@@ -34,7 +34,7 @@ internal class HomepageFragmentController(
         when (currentViewId) {
             R.id.chat_button -> hideFragment(homeChatFragment!!)
             R.id.talk_button -> hideFragment(homeTalkFragment!!)
-            R.id.settings_button -> hideFragment(settingsFragment!!)
+            R.id.settings_button -> hideFragment(profileFragment!!)
         }
         currentViewId = viewId
         when (viewId) {
@@ -50,11 +50,11 @@ internal class HomepageFragmentController(
             } else {
                 showFragment(homeTalkFragment!!)
             }
-            R.id.settings_button -> if (settingsFragment == null) {
-                settingsFragment = SettingsFragment.getInstance()
-                addFragment(settingsFragment)
+            R.id.settings_button -> if (profileFragment == null) {
+                profileFragment = ProfileFragment.getInstance()
+                addFragment(profileFragment)
             } else {
-                showFragment(settingsFragment!!)
+                showFragment(profileFragment!!)
             }
             else -> loadHomeInitially()
         }
@@ -83,8 +83,8 @@ internal class HomepageFragmentController(
         if (homeTalkFragment != null) {
             fragmentManager.putFragment(outState, HOME_TALK_FRAGMENT_NAME, homeTalkFragment!!)
         }
-        if (settingsFragment != null) {
-            fragmentManager.putFragment(outState, SETTINGS_FRAGMENT_NAME, settingsFragment!!)
+        if (profileFragment != null) {
+            fragmentManager.putFragment(outState, PROFILE_FRAGMENT_NAME, profileFragment!!)
         }
     }
 
@@ -99,9 +99,9 @@ internal class HomepageFragmentController(
             homeTalkFragment = savedTalkFragment as HomeTalkFragment
         }
 
-        val savedSettingsFragment = fragmentManager.getFragment(savedInstanceState, SETTINGS_FRAGMENT_NAME)
-        if (savedSettingsFragment != null) {
-            settingsFragment= savedSettingsFragment as SettingsFragment
+        val savedProfileFragment = fragmentManager.getFragment(savedInstanceState, PROFILE_FRAGMENT_NAME)
+        if (savedProfileFragment != null) {
+            profileFragment = savedProfileFragment as ProfileFragment
         }
     }
 }
